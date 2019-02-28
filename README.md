@@ -10,4 +10,4 @@ Welcome to our little Battleship clone! It has our own little additions compared
   4. Run the file with ```java BattleshipBoard```.
   5. Enjoy playing!
  
-The game is of yet unfinished, so don't hesitate to tell us about any issues and bugs you end up finiding while playing!
+The game is as of yet unfinished, so don't hesitate to tell us about any issues and bugs you end up finiding while playing!
