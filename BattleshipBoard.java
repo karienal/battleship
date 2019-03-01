@@ -93,11 +93,7 @@ public class BattleshipBoard{
 			while(shipListElement<=shipLength);
 		}
 	shipListElement=1;
-	playerShip.aShipCharList.clear();
-		
-		
-	}
-			
+	playerShip.aShipCharList.clear();			
 	aBoard.boardPrint();
 	}
 	
