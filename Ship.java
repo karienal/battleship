@@ -55,4 +55,5 @@ public class Ship {
 			/*A sarcastic error message I used in debugging*/
 			System.out.println("nice try");
 		}
+	}
 }
