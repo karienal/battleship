@@ -1,55 +1,58 @@
+import java.util.ArrayList;
 
-public class Ship extends BattleshipBoard {
+public class Ship {
+	/*Some instance stuff. A list and whatever. Note that the list */
+	ArrayList<String> aShipCharList= new ArrayList<String>();
+	public String shipChar;	
 	
-	private int shipLength = 0;
-	private int startColumn = 0;	
-	private int startRow = 0;	
-	private int endColumn = 0;	
-	private int endRow = 0;
-	private String shipChar = "0";
-	private String shipName = "default ship";
-	//private int health = 0;
-	//private int beacon = 0;
-	
-	private Ship() {
-		shipLength = 0;
-		shipChar = "default ship";
+	/*the ship constructor*/
+	Ship(String shipChar){
 		
-	}
-	
-	private Ship(int lengthGiven) {
-		Boolean makeSubmarine = true;
-		if(lengthGiven == 2) {
-			shipLength = 2;
-			shipChar = "1";
-			shipName = "Destroyer";
-		}
-		else if(lengthGiven == 3) {
-			shipLength = 3;
+		/*
+		*Some super elegant list creation. Hope it doesnt blow your minds.
+		*/
 			
-			if(makeSubmarine) {
-				shipChar = "2";
-				shipName = "Submarine";
-				makeSubmarine = false;
-			}
-			else {
-				shipChar = "3";
-				shipName = "Cruiser";
-				makeSubmarine = true;
-			}
+		if (shipChar.equals("D") || shipChar.equals("d")){
+			
+			aShipCharList.add("D");
+			aShipCharList.add("D");
+		}
+		
+		else if (shipChar.equals("s") || shipChar.equals("S")){
+				
+			aShipCharList.add("S");
+			aShipCharList.add("S");
+			aShipCharList.add("S");
 			
 		}
-		else if(lengthGiven == 4) {
-			shipLength = 4;
-			shipChar = "4";
-			shipName = "Battleship";
-		}
-		else if(lengthGiven == 5) {
-			shipLength = 5;
-			shipChar = "5";
-			shipName = "Carrier";
+		else if (shipChar.equals("c") || shipChar.equals("C")){
+		
+			aShipCharList.add("C");
+			aShipCharList.add("C");
+			aShipCharList.add("C");
+			
 		}
 		
+		else if (shipChar.equals("B") || shipChar.equals("b")){
 		
-	}	
+			aShipCharList.add("B");
+			aShipCharList.add("B");
+			aShipCharList.add("B");
+			aShipCharList.add("B");
+			
+		}
+		
+		else if (shipChar.equals("A") || shipChar.equals("a")){
+		
+			aShipCharList.add("A");
+			aShipCharList.add("A");
+			aShipCharList.add("A");
+			aShipCharList.add("A");
+			aShipCharList.add("A");
+		}
+		
+		else{
+			/*A sarcastic error message I used in debugging*/
+			System.out.println("nice try");
+		}
 }
