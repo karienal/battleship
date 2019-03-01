@@ -1,8 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-
-
-
 
 public class BattleshipBoard{
 	String [] [] grid;
@@ -13,10 +9,21 @@ public class BattleshipBoard{
 	*/
 	
 	public  BattleshipBoard(){
-		grid = new String[10][10];
-		for (int row = 0; row < 10; row++) {
-			for (int column = 0; column < 10; column++) {
+		grid = new String[11][11];
+		for (int row = 0; row < 11; row++) {
+			for (int column = 0; column < 11; column++) {
+				if (row == 0) {
+					grid[row][column] = " " + Integer.toString(column) + " ";
+				}
+				else if(column == 0) {
+					grid[row][column] = " " + Integer.toString(row) + " ";
+					if(row == 10) {
+						grid[row][column] = Integer.toString(row) + " ";
+					}
+				}
+				else {
 				grid[row][column] = " . ";
+				}
 			}
 		}
 	}
@@ -29,116 +36,75 @@ public class BattleshipBoard{
 		/*
 		*Some instance variables. Pretty straightforward I think.
 		*/
-		
-		boolean anotherShip= true;
 		int shipLength;
 		int shipListElement = 1;
 
+		/*
+		* Get some input 
+		*/
+		System.out.println("What ship do you want to place?");
+		String shipChar = keyboard.nextLine();
 		
+		System.out.println("Set the orientation: 'x' for horizontal, 'y' for vertical");
+		String orientation = keyboard.nextLine();
+	
+		System.out.println("Start Colummn of ship?: ");
+		int startColumn=keyboard.nextInt();
 		
-		do{
-			/*
-			* Get some input 
-			*/
-			System.out.println("What the ship?!");
-			String shipChar = keyboard.nextLine();
+		System.out.println("Start row of ship?: ");
+		int startRow=keyboard.nextInt();
+		keyboard.nextLine();
 			
-			System.out.println(" 'x' for horizontal, 'y' for vertical");
-			String orientation = keyboard.nextLine();
-		
-			System.out.println("Start Colummn of ship?: ");
-			int startColumn=keyboard.nextInt();
-		
-			System.out.println("Start row of ship?: ");
-			int startRow=keyboard.nextInt();
+		/*
+		*And make a ship to be placed. It is to be noted that aShipCharList comes from 
+		*the Ship class
+		*/
 			
-			/*
-			*And make a ship to be placed. It is to be noted that aShipCharList comes from 
-			*the Ship class
-			*/
-			
-			Ship playerShip = new Ship(shipChar);
-			shipLength = playerShip.aShipCharList.size();
+		Ship playerShip = new Ship(shipChar);
+		shipLength = playerShip.aShipCharList.size();
 		
 		
-			/*
-			*Start working with the input.
-			*/
+		/*
+		*Start working with the input.
+		*/
 		
-			if (orientation.equals("y")){
-			
-			/*
-			*I cant remember exactly why I set the element to 1 originally and now am subtracting 1 in use, but I'm too lazy
-			* and afraid to change it now to see if it still works or if this is necessary still.
-			*/
-				do{ 
-					grid[startRow-1][startColumn-1]=" "+playerShip.aShipCharList.get(shipListElement-1)+" ";
-					startRow++;
-					shipListElement++;
+		if (orientation.equals("y")){
+			do{ 
+				grid[startRow][startColumn]=" "+playerShip.aShipCharList.get(shipListElement-1)+" ";
+				startRow++;
+				shipListElement++;
 				
 				}
-				while(shipListElement<=shipLength);
-			
-			
-			
-			}
-			
-			
-			/*
-			*The same thing, except here the token exchange moves through the columns instead of the rows. I think something about
-			*what is a row and what is a column is a bit backwards here, but it works so...
-			*/
-			else if(orientation.equals("x")){
-
-			
-				do{ 
-					grid[startRow-1][startColumn-1]=" "+playerShip.aShipCharList.get(shipListElement-1)+" ";
-					startColumn++;
-					shipListElement++;
-				
-				}
-				while(shipListElement<=shipLength);
-			}
-			
-			/* Look at the board*/
-			aBoard.boardPrint();
-
-			
-			
-
-			/*You wannanotha ship? */
-			System.out.println("u wannanotha?");
-			/*This line does virtually nothing, but without it, java skips over the nex input line because java makes the rules
-			* and doesnt care if they make any sense.*/
-			String whyUDoThisJava=keyboard.nextLine();
-			
-			
-			String anotha=keyboard.nextLine();
-			
-			
-			if (anotha.equals("n")){
-				
-				anotherShip=false;
-			}
-			/*when prompted, only 'n' finishes the ship placemeent. anything else lets you keep goin*/
-			
-			else{
-				anotherShip=true;
-				shipListElement=1;
-				playerShip.aShipCharList.clear();
-			}
-			
-			
+			while(shipListElement<=shipLength);	
 		}
-		while(anotherShip==true);
+			
+			
+		/*
+		*The same thing, except here the token exchange moves through the columns instead of the rows. I think something about
+		*what is a row and what is a column is a bit backwards here, but it works so...
+		*/
+		else if(orientation.equals("x")){	
+			do{ 
+				grid[startRow][startColumn] = " " + playerShip.aShipCharList.get(shipListElement - 1) + " ";
+				startColumn++;
+				shipListElement++;
+				
+				}
+			while(shipListElement<=shipLength);
+		}
+	shipListElement=1;
+	playerShip.aShipCharList.clear();
 		
-		aBoard.boardPrint();
+		
+	}
+			
+	aBoard.boardPrint();
 	}
 	
 	/* boardPrint prints the board. Go figure.*/
 	public void boardPrint(){
-		for (int row = 0; row < 10; row++){
-			for (int column = 0; column < 10; column++){
+		for (int row = 0; row < 11; row++){
+			for (int column = 0; column < 11; column++){
 				System.out.print(grid[row][column]);
 			}
 			System.out.println();
@@ -151,10 +117,20 @@ public class BattleshipBoard{
 	*it should be fine. Yet another thing I'm too lazy/afraid to try at the moment.
 	*/
 	public static void main(String[] args) {
-
-		BattleshipBoard b1 = new BattleshipBoard();
-		b1.placeShip(b1);
+	int turnCount = 1;
 		
-
+	BattleshipBoard b1 = new BattleshipBoard();
+	BattleshipBoard b2 = new BattleshipBoard();
+		
+	do{
+		System.out.println("Player 1 turn");
+		b1.placeShip(b1);
+		System.out.println("Player 2 turn");
+		b2.placeShip(b2);
+		++turnCount;
+			
+	}
+	while (turnCount<=5);		
+	System.out.println("Time to play!");
 	}
 }
