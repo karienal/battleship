@@ -1,8 +1,8 @@
 
 public class BattleshipBoard{
-	static String [] [] grid;
-	static int shipLength;
-	static int shipListElement = 1;
+	String [] [] grid;
+	int shipLength;
+	int shipListElement = 1;
 	
 	/*
 	*We make a board.
@@ -33,7 +33,7 @@ public class BattleshipBoard{
 	*the Ship class
 	*/
 
-	public static void placeShip(BattleshipBoard aBoard, String shipChar, String orientation, int startRow, int startColumn){
+	public void placeShip(String shipChar, String orientation, int startRow, int startColumn){
 		Ship playerShip = new Ship(shipChar);
 		shipLength = playerShip.aShipCharList.size();
 			
@@ -67,7 +67,7 @@ public class BattleshipBoard{
 		}
 	shipListElement=1;
 	playerShip.aShipCharList.clear();			
-	aBoard.boardPrint();
+	
 	}
 	
 	/* boardPrint prints the board. Go figure.*/

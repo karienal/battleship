@@ -29,7 +29,8 @@ public class GameMain {
 			int startColumn=keyboard.nextInt();
 			keyboard.nextLine();
 			
-			BattleshipBoard.placeShip(player1, shipChar, orientation, startRow, startColumn);
+			player1.placeShip(shipChar, orientation, startRow, startColumn);
+			player1.boardPrint();
 			
 			
 			
@@ -46,7 +47,8 @@ public class GameMain {
 			System.out.println("Start Colummn of ship?: ");
 			startColumn=keyboard.nextInt();
 			keyboard.nextLine();
-			BattleshipBoard.placeShip(player2, shipChar, orientation, startRow, startColumn);
+			player2.placeShip(shipChar, orientation, startRow, startColumn);
+			player2.boardPrint();
 			
 			++turnCount;
 			
