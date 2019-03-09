@@ -1,21 +1,44 @@
-
+import java.util.*;
 public class PlayerActions {
 	
-	int numOfTurns = 3;
 	
-	public void moveShip() {
+	public static void attack(BattleshipBoard enemyBoard, int row, int column) {
+		hitOrMiss(enemyBoard, row, column);
 		
 	}
 	
-	public void attack() {
-		HitOrMiss.trueHit(0,0);
+	public static void hitOrMiss(BattleshipBoard enemyBoard, int row, int column) {
+		String selectedTile = enemyBoard.getBoard()[row][column];
+		if(row > 0 && row < 12) {
+			if(column > 0 && column < 12) {
+				if(selectedTile == " . ") {
+					enemyBoard.getBoard()[row][column] = " O ";
+				}
+				else if(selectedTile == " O "){
+					enemyBoard.getBoard()[row][column] = " O ";
+					}
+				else {
+					enemyBoard.getBoard()[row][column] = " X ";
+				}
+			}
+		}
+		
 	}
 	
-	public static void main(String[] args) {
-
-		System.out.println("You have 3 turns");
+	public static void heal(BattleshipBoard playersBoard, int row, int column) {
+		if(playersBoard.getBoard()[row][column]== " . " || playersBoard.getBoard()[row][column]== " O "){
+			
+			System.out.println("You cant heal water though...");			
+			}
 		
-
-	}
+		else if (playersBoard.getBoard()[row][column] != " X "){
+			
+			System.out.println("Chill, your ship is fine.");
+			}
+		
+		
+		else{playersBoard.getBoard()[row][column]= " S " ;}
+		
+		}
 
 }

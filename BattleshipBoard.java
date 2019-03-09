@@ -1,8 +1,8 @@
-import java.util.Scanner;
 
 public class BattleshipBoard{
 	String [] [] grid;
-	Scanner keyboard = new Scanner(System.in);
+	static int shipLength;
+	static int shipListElement = 1;
 	
 	/*
 	*We make a board.
@@ -29,41 +29,14 @@ public class BattleshipBoard{
 	}
 	
 	/*
-	*...and place a ship
+	*And make a ship to be placed. It is to be noted that aShipCharList comes from 
+	*the Ship class
 	*/
 
-	public void placeShip(BattleshipBoard aBoard){
-		/*
-		*Some instance variables. Pretty straightforward I think.
-		*/
-		int shipLength;
-		int shipListElement = 1;
-
-		/*
-		* Get some input 
-		*/
-		System.out.println("What ship do you want to place?");
-		String shipChar = keyboard.nextLine();
-		
-		System.out.println("Set the orientation: 'x' for horizontal, 'y' for vertical");
-		String orientation = keyboard.nextLine();
-	
-		System.out.println("Start Colummn of ship?: ");
-		int startColumn=keyboard.nextInt();
-		
-		System.out.println("Start row of ship?: ");
-		int startRow=keyboard.nextInt();
-		keyboard.nextLine();
-			
-		/*
-		*And make a ship to be placed. It is to be noted that aShipCharList comes from 
-		*the Ship class
-		*/
-			
+	public void placeShip(BattleshipBoard aBoard, String shipChar, String orientation, int startRow, int startColumn){
 		Ship playerShip = new Ship(shipChar);
 		shipLength = playerShip.aShipCharList.size();
-		
-		
+			
 		/*
 		*Start working with the input.
 		*/
@@ -92,9 +65,9 @@ public class BattleshipBoard{
 				}
 			while(shipListElement<=shipLength);
 		}
-	shipListElement=1;
-	playerShip.aShipCharList.clear();			
-	aBoard.boardPrint();
+		shipListElement=1;
+		playerShip.aShipCharList.clear();			
+		/*aBoard.boardPrint();*/
 	}
 	
 	/* boardPrint prints the board. Go figure.*/
@@ -107,26 +80,10 @@ public class BattleshipBoard{
 		}
 	}
 	
+	public String[][] getBoard() {
+		return grid;
+	}
 	
 	
-	/*A pretty boring main method, but I think it shows that we can create as many boards as we want, and
-	*it should be fine. Yet another thing I'm too lazy/afraid to try at the moment.
-	*/
-	public static void main(String[] args) {
-	int turnCount = 1;
-		
-	BattleshipBoard b1 = new BattleshipBoard();
-	BattleshipBoard b2 = new BattleshipBoard();
-		
-	do{
-		System.out.println("Player 1 turn");
-		b1.placeShip(b1);
-		System.out.println("Player 2 turn");
-		b2.placeShip(b2);
-		++turnCount;
-			
-	}
-	while (turnCount<=5);		
-	System.out.println("Time to play!");
-	}
+	
 }
