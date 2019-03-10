@@ -3,7 +3,7 @@ public class BattleshipBoard{
 	String [] [] grid;
 	static int shipLength;
 	static int shipListElement = 1;
-	
+
 	/*
 	*We make a board.
 	*/
@@ -22,7 +22,7 @@ public class BattleshipBoard{
 					}
 				}
 				else {
-				grid[row][column] = " . ";
+				grid[row][column] = " ~ ";
 				}
 			}
 		}
@@ -67,7 +67,7 @@ public class BattleshipBoard{
 		}
 		shipListElement=1;
 		playerShip.aShipCharList.clear();			
-		/*aBoard.boardPrint();*/
+
 	}
 	
 	/* boardPrint prints the board. Go figure.*/

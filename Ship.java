@@ -1,7 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.io.*;
+import java.util.Scanner;
+
 
 public class Ship {
 	/*Some instance stuff. A list and whatever. Note that the list */
+	Scanner keyboard = new Scanner(System.in);
 	ArrayList<String> aShipCharList= new ArrayList<String>();
 	public String shipChar;	
 	
@@ -11,7 +16,9 @@ public class Ship {
 		/*
 		*Some super elegant list creation. Hope it doesnt blow your minds.
 		*/
-			
+		
+
+		
 		if (shipChar.equals("D") || shipChar.equals("d")){
 			
 			aShipCharList.add("D");
@@ -55,5 +62,31 @@ public class Ship {
 			/*A sarcastic error message I used in debugging*/
 			System.out.println("nice try");
 		}
+		/*This could also be removed. I was just using it to make sure the ships were the
+		* right size and character
+		*/
+		System.out.println(aShipCharList);
+	}
+	 
+	 /*
+	 *Another really boring main method. Should make sense though, I hope.
+	 */
+	public static void main(String[] args) {
+		
+		
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("What the Ship?! ");
+		
+		
+
+		String aShipChar = keyboard.nextLine ();
+		
+		Ship playerShip = new Ship(aShipChar);
+	
+		
+		
 	}
 }
+	
+	
+	

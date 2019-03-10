@@ -17,8 +17,11 @@ public class PlayerActions {
 				else if(selectedTile == " O "){
 					enemyBoard.getBoard()[row][column] = " O ";
 					}
-				else {
+					else if(selectedTile == " R "){
 					enemyBoard.getBoard()[row][column] = " X ";
+					}
+				else {
+					enemyBoard.getBoard()[row][column] = " x ";
 				}
 			}
 		}
@@ -31,13 +34,19 @@ public class PlayerActions {
 			System.out.println("You cant heal water though...");			
 			}
 		
-		else if (playersBoard.getBoard()[row][column] != " X "){
+		else if(playersBoard.getBoard()[row][column]!= " x " && playersBoard.getBoard()[row][column]!= " X "){
 			
 			System.out.println("Chill, your ship is fine.");
+			
+			
+		}
+		else if (playersBoard.getBoard()[row][column] == " x "){
+			playersBoard.getBoard()[row][column]= " R " ;
+				
 			}
 		
 		
-		else{playersBoard.getBoard()[row][column]= " S " ;}
+		else{System.out.println("She broke.");}
 		
 		}
 

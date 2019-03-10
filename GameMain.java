@@ -175,21 +175,6 @@ public class GameMain {
 					winCondition = true;}
 				
 				
-			
-			/*for(int row = 1 ; row < 11 ; row++) {
-				for(int column = 1 ; column < 11 ; column++) {
-					if(player1.getBoard()[row][column]!= " . "&& player1.getBoard()[row][column]!= " X " && player1.getBoard()[row][column]!= " O " && player1.getBoard()[row][column]!= " S ") {
-						winCondition=true;
-
-						}
-					else if (player2.getBoard()[row][column]!= " . "&& player2.getBoard()[row][column]!= " X " && player2.getBoard()[row][column]!= " O " /*&& player2.getBoard()[row][column]!= " S "*){
-							
-						winCondition = true;
-						}
-					else{winCondition = false;}
-					
-					}
-				}*/
 
 				
 				
