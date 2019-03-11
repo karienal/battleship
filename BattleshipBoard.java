@@ -82,6 +82,7 @@ public class BattleshipBoard{
 	
 	public String[][] getBoard() {
 		return grid;
+		
 	}
 	
 	
