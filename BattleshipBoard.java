@@ -22,7 +22,7 @@ public class BattleshipBoard{
 					}
 				}
 				else {
-				grid[row][column] = " ~ ";
+				grid[row][column] = " . ";
 				}
 			}
 		}
