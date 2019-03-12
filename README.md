@@ -13,10 +13,7 @@ Welcome to our little Battleship clone! It has our own little additions compared
 1. Each player will place their five ships on the board.
    i) Input is delivered by console commands in the current build. A starting row, column  and orientation will be provided by the user
        and the ship will be placed such that the tiles occupied increase positively. (Board has labled numbers and columns for 
-       reference). That is to say, if the starting coordinates are (5,5). A destroyer ship is to be placed horizontally on the board,
-       then the occupied tiles will be (5,5) and (6,5). The game will not place the board such that the resulting placement of the 
-       board will be (5,5) and (4,5). Therefore, If you tried to place a destroyer, oriented horizontally, at (10,5), you will recieve
-       an error message. There is a catch in development, however in the current build the game will crash.
+       reference). If you place a ship that extends the length of the board, you will be reprompted to place again.
        
    ii) Current build only accepts ship placement in bounds of the board, so for your consideration, a list of available ships and their
         lengths is provided below. Future builds hope to display this information in game in an elegant matter.
