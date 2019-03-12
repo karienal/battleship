@@ -42,7 +42,7 @@ public class BattleshipBoard{
 		*/
 		
 		if (orientation.equals("y")){
-			do{ 
+			do{
 				grid[startRow][startColumn]=" "+playerShip.aShipCharList.get(shipListElement-1)+" ";
 				startRow++;
 				shipListElement++;
@@ -82,9 +82,51 @@ public class BattleshipBoard{
 	
 	public String[][] getBoard() {
 		return grid;
-		
 	}
 	
 	
+	/*Tests to see if a ship placement is valid. Checs bounds or if placed on another ship/*/
+	
+	public  boolean validPlaceShip(BattleshipBoard aBoard,int startCol, int startRow, String shipChar , String orientation){
+		boolean placeShipHere=false;
+		int validPlace = 0;
+		int shipSpot;
+		
+		Ship playerShip = new Ship(shipChar);
+		int shipLength = playerShip.aShipCharList.size()+1;
+		
+		
+		if (orientation.equals("y") == true){
+			
+		for (shipSpot = startRow; shipSpot <= startRow+shipLength; shipSpot++){
+				if (aBoard.getBoard()[shipSpot][startCol]!=" . "){validPlace++;}
+				else{}
+			}
+				
+			if (validPlace > 0){ placeShipHere = false;}		
+			
+			else{placeShipHere = true;}			
+		}
+		
+		
+		if (orientation.equals("x") == true){
+			
+		for ( shipSpot = startCol; shipSpot <= startCol+shipLength; shipSpot++){
+				if (aBoard.getBoard()[startRow][shipSpot]!=" . "){validPlace++;}
+				
+				else{}
+			}
+				
+			if (validPlace > 0){ placeShipHere = false;}		
+			
+			else{placeShipHere = true;}			
+		}
+
+		
+		
+		if (startCol+shipLength>=11 || startRow+shipLength>=11){placeShipHere = false;}
+		
+		return placeShipHere;
+	}
 	
 }

@@ -61,11 +61,9 @@ public class Ship {
 		else{
 			/*A sarcastic error message I used in debugging*/
 			System.out.println("nice try");
+
+		
 		}
-		/*This could also be removed. I was just using it to make sure the ships were the
-		* right size and character
-		*/
-		System.out.println(aShipCharList);
 	}
 	 
 	 /*
@@ -82,10 +80,11 @@ public class Ship {
 		String aShipChar = keyboard.nextLine ();
 		
 		Ship playerShip = new Ship(aShipChar);
+	}
 	
 		
 		
-	}
+	
 }
 	
 	

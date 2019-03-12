@@ -13,7 +13,13 @@ public class GameMain {
 		
 		//Game Set-up
 		int turnCount = 1;
-			
+		int startRow;
+		int startColumn;
+		String orientation;
+		String shipChar;
+		boolean canAShip;
+		
+		
 		BattleshipBoard player1 = new BattleshipBoard();
 		BattleshipBoard player2 = new BattleshipBoard();
 
@@ -23,56 +29,79 @@ public class GameMain {
 		
 		
 		do{
-			System.out.println("Player 1 turn");
-			System.out.println("What ship do you want to place?");
-			String shipChar = keyboard.nextLine();
+			 /*canAShip = false;*/
 			
-			System.out.println("Set the orientation: 'x' for horizontal, 'y' for vertical");
-			String orientation = keyboard.nextLine();
+			do{
+				System.out.println("Player 1 turn");
+				System.out.println("What ship do you want to place?");
+				shipChar = keyboard.nextLine();
+			
+				System.out.println("Set the orientation: 'x' for horizontal, 'y' for vertical");
+				orientation = keyboard.nextLine();
 
-			System.out.println("Start row of ship?: ");
-			int startRow=keyboard.nextInt();
+				System.out.println("Start row of ship?: ");
+				startRow=keyboard.nextInt();
 			
-			System.out.println("Start Colummn of ship?: ");
-			int startColumn=keyboard.nextInt();
-			keyboard.nextLine();
+				System.out.println("Start Colummn of ship?: ");
+				startColumn=keyboard.nextInt();
+				keyboard.nextLine();
 			
-			player1.placeShip(player1,shipChar, orientation, startRow, startColumn);
+				canAShip = player1.validPlaceShip(player1 , startColumn , startRow , shipChar, orientation);
+				System.out.println(canAShip);
+			}
+			
+			while(canAShip == false);
+					
+			player1.placeShip(player1, shipChar, orientation, startRow, startColumn);
+			
+			
 			player1.boardPrint();
 			
 			
 			
+			canAShip = false;
 			
-			System.out.println("Player 2 turn");
-			System.out.println("What ship do you want to place?");
-			shipChar = keyboard.nextLine();
+			do{
+				System.out.println("Player 2 turn");
+				System.out.println("What ship do you want to place?");
+				shipChar = keyboard.nextLine();
 			
-			System.out.println("Set the orientation: 'x' for horizontal, 'y' for vertical");
-			orientation = keyboard.nextLine();
+				System.out.println("Set the orientation: 'x' for horizontal, 'y' for vertical");
+				orientation = keyboard.nextLine();
 
-			System.out.println("Start row of ship?: ");
-			startRow=keyboard.nextInt();
+				System.out.println("Start row of ship?: ");
+				startRow=keyboard.nextInt();
 			
-			System.out.println("Start Colummn of ship?: ");
-			startColumn=keyboard.nextInt();
-			keyboard.nextLine();
-			player2.placeShip(player2,shipChar, orientation, startRow, startColumn);
+				System.out.println("Start Colummn of ship?: ");
+				startColumn=keyboard.nextInt();
+				keyboard.nextLine();
+				
+				canAShip = player2.validPlaceShip(player2, startColumn, startRow, shipChar, orientation);
+				System.out.println(canAShip);
+			
+				
+				}
+			
+			while(canAShip == false);
+			
+			player2.placeShip(player2, shipChar, orientation, startRow, startColumn);
 			player2.boardPrint();
-			
 			++turnCount;
 			
 				
-		}
-		while (turnCount<=1);		
+			}
+		
+		while (turnCount<=2);		
 		System.out.println("Time to play!");
 		
-		boolean p1Turn = true;
+		
 		boolean winCondition=false;
-		int arbitraryTurnCount=0;
-	
 		//Game Play for Player 1's Turn:
 		do{
 			int didWin = 0;
+			boolean p1Turn = true;
+			
+			int arbitraryTurnCount=0;
 			
 			if (p1Turn ==true){
 				System.out.println("Player 1. You have 1 turn. Do you want to attack the enemy ship or heal your ship?");
