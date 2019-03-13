@@ -1,31 +1,57 @@
-
+import java.util.*;
 public class PlayerActions {
 	
-	int numOfTurns = 1;
 	
-	public void attack(String[][] enemyBoard, int row, int column) {
-		hitOrMiss(enemyBoard, row, column);
-		--numOfTurns;
+	public static void attack(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
+		hitOrMiss(enemyBoard, displayEnemyBoard, row, column);
+		
 	}
 	
-	public void hitOrMiss(String[][] enemyBoard, int row, int column) {
-		String selectedTile = enemyBoard[row][column];
+	public static void hitOrMiss(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
+		String selectedTile = enemyBoard.getBoard()[row][column];
 		if(row > 0 && row < 12) {
 			if(column > 0 && column < 12) {
 				if(selectedTile == " . ") {
-					enemyBoard[row][column] = " O ";
+					enemyBoard.getBoard()[row][column] = " O ";
+					displayEnemyBoard.getBoard()[row][column] = " O ";
 				}
+				else if(selectedTile == " O "){
+					enemyBoard.getBoard()[row][column] = " O ";
+					displayEnemyBoard.getBoard()[row][column] = " O ";
+					}
+					else if(selectedTile == " R "){
+					enemyBoard.getBoard()[row][column] = " X ";
+					displayEnemyBoard.getBoard()[row][column] = " X ";
+					}
 				else {
-					enemyBoard[row][column] = " X ";
+					enemyBoard.getBoard()[row][column] = " x ";
+					displayEnemyBoard.getBoard()[row][column] = " x ";
 				}
 			}
 		}
 		
 	}
 	
-	public void heal(String[][] playersBoard, int row, int column) {
-		playersBoard[row][column] = " S ";
-		--numOfTurns;
-	}
+	public static void heal(BattleshipBoard playersBoard, int row, int column) {
+		if(playersBoard.getBoard()[row][column]== " . " || playersBoard.getBoard()[row][column]== " O "){
+			
+			System.out.println("You cant heal water though...");			
+			}
+		
+		else if(playersBoard.getBoard()[row][column]!= " x " && playersBoard.getBoard()[row][column]!= " X "){
+			
+			System.out.println("Chill, your ship is fine.");
+			
+			
+		}
+		else if (playersBoard.getBoard()[row][column] == " x "){
+			playersBoard.getBoard()[row][column]= " R " ;
+				
+			}
+		
+		
+		else{System.out.println("She broke.");}
+		
+		}
 
 }
