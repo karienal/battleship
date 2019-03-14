@@ -4,9 +4,6 @@ public class GameMain {
 	
 	public static Scanner keyboard = new Scanner(System.in);
 	
-	/*A pretty boring main method, but I think it shows that we can create as many boards as we want, and
-	*it should be fine. Yet another thing I'm too lazy/afraid to try at the moment.
-	*/
 	
 	
 	public static void main(String[] args) {
@@ -18,10 +15,13 @@ public class GameMain {
 		String orientation;
 		String shipChar;
 		boolean canAShip;
-		
+		boolean p1Turn = true;
 		
 		BattleshipBoard player1 = new BattleshipBoard();
+		BattleshipBoard player1Enemy = new BattleshipBoard();
+		
 		BattleshipBoard player2 = new BattleshipBoard();
+		BattleshipBoard player2Enemy = new BattleshipBoard();
 
 
 				
@@ -99,13 +99,14 @@ public class GameMain {
 		//Game Play for Player 1's Turn:
 		do{
 			int didWin = 0;
-			boolean p1Turn = true;
+			/*boolean p1Turn = true;*/
 			
 			int arbitraryTurnCount=0;
 			
 			if (p1Turn ==true){
 				System.out.println("Player 1. You have 1 turn. Do you want to attack the enemy ship or heal your ship?");
-				if (arbitraryTurnCount>0){String yJava=keyboard.nextLine();}
+				if (arbitraryTurnCount>=0){String yJava=keyboard.nextLine();}
+				else{}
 				String playerActionRequest = keyboard.nextLine();
 		
 		
@@ -119,7 +120,11 @@ public class GameMain {
 					int attackRow = keyboard.nextInt();
 					System.out.println("Enter the column to attack:");
 					int attackColumn = keyboard.nextInt();
-					PlayerActions.attack(player2, attackRow, attackColumn);
+					PlayerActions.attack(player2, player1Enemy, attackRow, attackColumn);
+					
+					/**/
+
+					
 					--numberOfTurns;
 					}
 				else {
@@ -127,7 +132,10 @@ public class GameMain {
 					int healRow = keyboard.nextInt();
 					System.out.println("Enter the column to heal:");
 					int healColumn = keyboard.nextInt();
-					PlayerActions.heal(player1, healRow, healColumn);
+					PlayerActions.heal(player1,player2Enemy, healRow, healColumn);
+					/**/
+
+					
 					--numberOfTurns;
 					}
 					
@@ -147,12 +155,19 @@ public class GameMain {
 					
 				p1Turn=false;
 				arbitraryTurnCount++;
+				
+				System.out.println("Player 1");
+				player1.boardPrint();
+				System.out.println("Player 1 Enemy");
+				player1Enemy.boardPrint();
+				
 				}
 		
 			else{
 			
 					System.out.println("Player 2. You have 1 turn. Do you want to attack the enemy ship or heal your ship?");
-					if (arbitraryTurnCount>0){String yJava=keyboard.nextLine();}
+					if (arbitraryTurnCount>=0){String yJava=keyboard.nextLine();}
+					else{}
 					String playerActionRequest = keyboard.nextLine();
 		
 		
@@ -166,7 +181,8 @@ public class GameMain {
 						int attackRow = keyboard.nextInt();
 						System.out.println("Enter the column to attack:");
 						int attackColumn = keyboard.nextInt();
-						PlayerActions.attack(player1, attackRow, attackColumn);
+						PlayerActions.attack(player1, player2Enemy, attackRow, attackColumn);
+						
 						--numberOfTurns;
 						}
 					else {
@@ -174,7 +190,9 @@ public class GameMain {
 						int healRow = keyboard.nextInt();
 						System.out.println("Enter the column to heal:");
 						int healColumn = keyboard.nextInt();
-						PlayerActions.heal(player2, healRow, healColumn);
+						PlayerActions.heal(player2,player1Enemy, healRow, healColumn);
+						
+						
 						--numberOfTurns;
 						}
 					
@@ -189,14 +207,13 @@ public class GameMain {
 						}
 					
 					
-						p1Turn=true;
-					
+					p1Turn=true;
+					System.out.println("Player 2");
+					player2.boardPrint();
+					System.out.println("Player 2 Enemy");
+					player2Enemy.boardPrint();
 					
 				}
-				System.out.println("Player 1");
-				player1.boardPrint();
-				System.out.println("Player2");
-				player2.boardPrint();
 				
 				/*Sketchy incomplete win condition. Kind of works sometimes though*/	
 				if (didWin==0){

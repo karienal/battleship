@@ -5,19 +5,16 @@ import java.util.Scanner;
 
 
 public class Ship {
-	/*Some instance stuff. A list and whatever. Note that the list */
+
 	Scanner keyboard = new Scanner(System.in);
 	ArrayList<String> aShipCharList= new ArrayList<String>();
 	public String shipChar;	
 	
-	/*the ship constructor*/
+	/*The method used to generate ships to be placed on the board.
+	@param shipChar A string containing a single character,  used  generate ships of appropriate size and character
+	*/
 	Ship(String shipChar){
 		
-		/*
-		*Some super elegant list creation. Hope it doesnt blow your minds.
-		*/
-		
-
 		
 		if (shipChar.equals("D") || shipChar.equals("d")){
 			

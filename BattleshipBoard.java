@@ -122,9 +122,24 @@ public class BattleshipBoard{
 			else{placeShipHere = true;}			
 		}
 
+		for (int row=1; row < 11 ; row++){
+			for (int col = 1; col< 11 ; col++){
+				if(aBoard.getBoard()[row][col].equals(" "+shipChar+" ")){
+					
+					validPlace++;
+					
+				}
+
+			}
+		}
+		if (validPlace>0){placeShipHere = false;}
+		else{placeShipHere = true;}
+
 		
 		
 		if (startCol+shipLength>=11 || startRow+shipLength>=11){placeShipHere = false;}
+		
+		
 		
 		return placeShipHere;
 	}
