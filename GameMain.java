@@ -5,6 +5,7 @@ public class GameMain {
 	public static Scanner keyboard = new Scanner(System.in);
 	
 	
+	
 	public static void main(String[] args) {
 		
 		//Game Set-up
@@ -14,7 +15,6 @@ public class GameMain {
 		String orientation;
 		String shipChar;
 		boolean canAShip;
-
 		boolean p1Turn = true;
 		
 		BattleshipBoard player1 = new BattleshipBoard();
@@ -22,7 +22,9 @@ public class GameMain {
 		
 		BattleshipBoard player2 = new BattleshipBoard();
 		BattleshipBoard player2Enemy = new BattleshipBoard();
-			
+
+
+				
 		
 		
 		
@@ -97,15 +99,12 @@ public class GameMain {
 		//Game Play for Player 1's Turn:
 		do{
 			int didWin = 0;
-      
 			/*boolean p1Turn = true;*/
-
 			
 			int arbitraryTurnCount=0;
 			
 			if (p1Turn ==true){
 				System.out.println("Player 1. You have 1 turn. Do you want to attack the enemy ship or heal your ship?");
-
 				if (arbitraryTurnCount>=0){String yJava=keyboard.nextLine();}
 				else{}
 				String playerActionRequest = keyboard.nextLine();
@@ -117,31 +116,26 @@ public class GameMain {
 				boolean actionEqualsAttack = playerActionRequest.contentEquals("attack");
 				
 				if(actionEqualsAttack) {
-
-					player1Enemy.boardPrint();
-
 					System.out.println("Enter the row to attack:");
 					int attackRow = keyboard.nextInt();
 					System.out.println("Enter the column to attack:");
 					int attackColumn = keyboard.nextInt();
-
 					PlayerActions.attack(player2, player1Enemy, attackRow, attackColumn);
-					player1Enemy.boardPrint();
-					System.out.println("Your results are above");
+					
+					/**/
+
+					
 					--numberOfTurns;
 					}
 				else {
-					player1.boardPrint();
-
 					System.out.println("Enter the row to heal:");
 					int healRow = keyboard.nextInt();
 					System.out.println("Enter the column to heal:");
 					int healColumn = keyboard.nextInt();
+					PlayerActions.heal(player1,player2Enemy, healRow, healColumn);
+					/**/
 
-					PlayerActions.heal(player1, player2Enemy, healRow, healColumn);
-					player1.boardPrint();
-					System.out.println("Your results are above");
-
+					
 					--numberOfTurns;
 					}
 					
@@ -161,7 +155,6 @@ public class GameMain {
 					
 				p1Turn=false;
 				arbitraryTurnCount++;
-
 				
 				System.out.println("Player 1");
 				player1.boardPrint();
@@ -173,7 +166,6 @@ public class GameMain {
 			else{
 			
 					System.out.println("Player 2. You have 1 turn. Do you want to attack the enemy ship or heal your ship?");
-
 					if (arbitraryTurnCount>=0){String yJava=keyboard.nextLine();}
 					else{}
 					String playerActionRequest = keyboard.nextLine();
@@ -185,30 +177,22 @@ public class GameMain {
 					boolean actionEqualsAttack = playerActionRequest.contentEquals("attack");
 			
 					if(actionEqualsAttack) {
-
-						player2Enemy.boardPrint();
-
 						System.out.println("Enter the row to attack:");
 						int attackRow = keyboard.nextInt();
 						System.out.println("Enter the column to attack:");
 						int attackColumn = keyboard.nextInt();
-
 						PlayerActions.attack(player1, player2Enemy, attackRow, attackColumn);
-						player2Enemy.boardPrint();
-						System.out.println("Your results are above");
+						
 						--numberOfTurns;
 						}
 					else {
-						player2.boardPrint();
-
 						System.out.println("Enter the row to heal:");
 						int healRow = keyboard.nextInt();
 						System.out.println("Enter the column to heal:");
 						int healColumn = keyboard.nextInt();
-						PlayerActions.heal(player2, player1Enemy, healRow, healColumn);
-						player2.boardPrint();
-						System.out.println("Your results are above");
-
+						PlayerActions.heal(player2,player1Enemy, healRow, healColumn);
+						
+						
 						--numberOfTurns;
 						}
 					
@@ -222,7 +206,7 @@ public class GameMain {
 							}
 						}
 					
-
+					
 					p1Turn=true;
 					System.out.println("Player 2");
 					player2.boardPrint();
@@ -231,7 +215,6 @@ public class GameMain {
 					
 				}
 				
-
 				/*Sketchy incomplete win condition. Kind of works sometimes though*/	
 				if (didWin==0){
 					System.out.println("a player has won!");
@@ -250,6 +233,4 @@ public class GameMain {
 	
 	}
 	
-
 }
-
