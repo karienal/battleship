@@ -186,7 +186,7 @@ public class GameMain {
 			
 					if(actionEqualsAttack) {
 
-						Player2Enemy.boardPrint();
+						player2Enemy.boardPrint();
 
 						System.out.println("Enter the row to attack:");
 						int attackRow = keyboard.nextInt();
