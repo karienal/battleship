@@ -2,8 +2,7 @@ import java.util.*;
 public class PlayerActions {
 	
 	public static Scanner keyboard = new Scanner(System.in);
-	
-	
+		
 	public static void setUp(BattleshipBoard playerBoard) {
 		boolean canAShip;
 		System.out.println("What ship do you want to place?");
@@ -38,7 +37,7 @@ public class PlayerActions {
 		System.out.println("Enter the column to attack:");
 		int attackColumn = keyboard.nextInt();
 		hitOrMiss(enemyBoard, displayEnemyBoard, attackRow, attackColumn);
-		
+	
 	}
 	
 	public static Boolean hitOrMiss(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
@@ -73,11 +72,13 @@ public class PlayerActions {
 	}
 	
 
+
 	public static void repair(BattleshipBoard playersBoard,BattleshipBoard displayBoard) {
 		System.out.println("Enter the row to repair:");
 		int repairRow = keyboard.nextInt();
 		System.out.println("Enter the column to repair:");
 		int repairColumn = keyboard.nextInt();
+
 
 		if(playersBoard.getBoard()[repairRow][repairColumn]== " . " || playersBoard.getBoard()[repairRow][repairColumn]== " O "){
 			

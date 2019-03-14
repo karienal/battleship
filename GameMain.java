@@ -62,12 +62,8 @@ public class GameMain {
 					System.out.println("Your board:");
 					player1.boardPrint();
 
-					//System.out.println("Enter the row to repair:");
-					//int repairRow = keyboard.nextInt();
-					//System.out.println("Enter the column to repair:");
-					//int repairColumn = keyboard.nextInt();
-
 					PlayerActions.repair(player1, player2Enemy);
+
 					player1.boardPrint();
 					System.out.println("Your results are above");
 
@@ -105,14 +101,16 @@ public class GameMain {
 		
 		
 		
+
 					boolean actionEqualsAttack = playerActionRequest.contentEquals("y");
+
 			
 					if(actionEqualsAttack) {
 						System.out.println("Your enemy's board:");
 						player2Enemy.boardPrint();
 
-						
 						PlayerActions.attack(player1, player2Enemy);
+
 						player2Enemy.boardPrint();
 						System.out.println("Your results are above");
 						
@@ -121,12 +119,9 @@ public class GameMain {
 						System.out.println("Your board:");
 						player2.boardPrint();
 
-						//System.out.println("Enter the row to repair:");
-						//int repairRow = keyboard.nextInt();
-						//System.out.println("Enter the column to repair:");
-						//int repairColumn = keyboard.nextInt();
-						
+
 						PlayerActions.repair(player2, player1Enemy);
+
 						player2.boardPrint();
 						System.out.println("Your results are above");
 
