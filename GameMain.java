@@ -9,12 +9,6 @@ public class GameMain {
 		
 		//Game Set-up
 		int turnCount = 1;
-		int startRow;
-		int startColumn;
-		String orientation;
-		String shipChar;
-		boolean canAShip;
-
 		boolean p1Turn = true;
 		
 		BattleshipBoard player1 = new BattleshipBoard();
@@ -25,72 +19,17 @@ public class GameMain {
 			
 		
 		
+		//Run Set up
 		
 		do{
-			 /*canAShip = false;*/
-			
-			do{
-				System.out.println("Player 1 turn");
-				System.out.println("What ship do you want to place?");
-				shipChar = keyboard.nextLine();
-			
-				System.out.println("Set the orientation: 'x' for horizontal, 'y' for vertical");
-				orientation = keyboard.nextLine();
-
-				System.out.println("Start row of ship?: ");
-				startRow=keyboard.nextInt();
-			
-				System.out.println("Start Colummn of ship?: ");
-				startColumn=keyboard.nextInt();
-				keyboard.nextLine();
-			
-				canAShip = player1.validPlaceShip(player1 , startColumn , startRow , shipChar, orientation);
-				System.out.println(canAShip);
-			}
-			
-			while(canAShip == false);
-					
-			player1.placeShip(player1, shipChar, orientation, startRow, startColumn);
-			
-			
-			player1.boardPrint();
-			
-			
-			
-			canAShip = false;
-			
-			do{
-				System.out.println("Player 2 turn");
-				System.out.println("What ship do you want to place?");
-				shipChar = keyboard.nextLine();
-			
-				System.out.println("Set the orientation: 'x' for horizontal, 'y' for vertical");
-				orientation = keyboard.nextLine();
-
-				System.out.println("Start row of ship?: ");
-				startRow=keyboard.nextInt();
-			
-				System.out.println("Start Colummn of ship?: ");
-				startColumn=keyboard.nextInt();
-				keyboard.nextLine();
-				
-				canAShip = player2.validPlaceShip(player2, startColumn, startRow, shipChar, orientation);
-				System.out.println(canAShip);
-			
-				
-				}
-			
-			while(canAShip == false);
-			
-			player2.placeShip(player2, shipChar, orientation, startRow, startColumn);
-			player2.boardPrint();
+			System.out.println("Player 1, your turn");
+			PlayerActions.setUp(player1);
+			System.out.println("Player 2, your turn");
+			PlayerActions.setUp(player2);
 			++turnCount;
-			
-				
-			}
-		
-		while (turnCount<=2);		
-		System.out.println("Time to play!");
+		}
+		while(turnCount <=2);
+		System.out.println("Time to play! WOOOOO!!");
 		
 		
 		boolean winCondition=false;
@@ -101,23 +40,17 @@ public class GameMain {
 			/*boolean p1Turn = true;*/
 
 			
-			int arbitraryTurnCount=0;
+			
 			
 			if (p1Turn ==true){
-				System.out.println("Player 1. You have 1 turn. Do you want to attack the enemy ship or heal your ship?");
-
-				if (arbitraryTurnCount>=0){String yJava=keyboard.nextLine();}
-				else{}
+				System.out.println("Player 1. You have 1 turn. You can attack the enemy, or repair your ship. Do you want to attack the enemy? y/n");
 				String playerActionRequest = keyboard.nextLine();
-		
-		
-		
-		
-				int numberOfTurns = 1;
-				boolean actionEqualsAttack = playerActionRequest.contentEquals("attack");
+				
+				
+				boolean actionEqualsAttack = playerActionRequest.contentEquals("y");
 				
 				if(actionEqualsAttack) {
-
+					System.out.println("Your enemy's board:");
 					player1Enemy.boardPrint();
 
 					System.out.println("Enter the row to attack:");
@@ -128,21 +61,21 @@ public class GameMain {
 					PlayerActions.attack(player2, player1Enemy, attackRow, attackColumn);
 					player1Enemy.boardPrint();
 					System.out.println("Your results are above");
-					--numberOfTurns;
+					
 					}
 				else {
+					System.out.println("Your board:");
 					player1.boardPrint();
 
-					System.out.println("Enter the row to heal:");
-					int healRow = keyboard.nextInt();
-					System.out.println("Enter the column to heal:");
-					int healColumn = keyboard.nextInt();
+					System.out.println("Enter the row to repair:");
+					int repairRow = keyboard.nextInt();
+					System.out.println("Enter the column to repair:");
+					int repairColumn = keyboard.nextInt();
 
-					PlayerActions.heal(player1, player2Enemy, healRow, healColumn);
+					PlayerActions.repair(player1, player2Enemy, repairRow, repairColumn);
 					player1.boardPrint();
 					System.out.println("Your results are above");
 
-					--numberOfTurns;
 					}
 					
 					
@@ -160,13 +93,10 @@ public class GameMain {
 				
 					
 				p1Turn=false;
-				arbitraryTurnCount++;
+				
 
 				
-				System.out.println("Player 1");
-				player1.boardPrint();
-				System.out.println("Player 1 Enemy");
-				player1Enemy.boardPrint();
+				
 				
 				}
 		
@@ -174,19 +104,17 @@ public class GameMain {
 			
 					System.out.println("Player 2. You have 1 turn. Do you want to attack the enemy ship or heal your ship?");
 
-					if (arbitraryTurnCount>=0){String yJava=keyboard.nextLine();}
-					else{}
+					
 					String playerActionRequest = keyboard.nextLine();
 		
 		
 		
 		
-					int numberOfTurns = 1;
 					boolean actionEqualsAttack = playerActionRequest.contentEquals("attack");
 			
 					if(actionEqualsAttack) {
-
-						Player2Enemy.boardPrint();
+						System.out.println("Your enemy's board:");
+						player2Enemy.boardPrint();
 
 						System.out.println("Enter the row to attack:");
 						int attackRow = keyboard.nextInt();
@@ -196,20 +124,20 @@ public class GameMain {
 						PlayerActions.attack(player1, player2Enemy, attackRow, attackColumn);
 						player2Enemy.boardPrint();
 						System.out.println("Your results are above");
-						--numberOfTurns;
+						
 						}
 					else {
+						System.out.println("Your board:");
 						player2.boardPrint();
 
-						System.out.println("Enter the row to heal:");
-						int healRow = keyboard.nextInt();
-						System.out.println("Enter the column to heal:");
-						int healColumn = keyboard.nextInt();
-						PlayerActions.heal(player2, player1Enemy, healRow, healColumn);
+						System.out.println("Enter the row to repair:");
+						int repairRow = keyboard.nextInt();
+						System.out.println("Enter the column to repair:");
+						int repairColumn = keyboard.nextInt();
+						PlayerActions.repair(player2, player1Enemy, repairRow, repairColumn);
 						player2.boardPrint();
 						System.out.println("Your results are above");
 
-						--numberOfTurns;
 						}
 					
 						/*Sketchy incomplete win condition. Kind of works sometimes though*/	
@@ -224,10 +152,7 @@ public class GameMain {
 					
 
 					p1Turn=true;
-					System.out.println("Player 2");
-					player2.boardPrint();
-					System.out.println("Player 2 Enemy");
-					player2Enemy.boardPrint();
+				
 					
 				}
 				

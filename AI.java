@@ -36,8 +36,8 @@ public class AI {
 				difficulty = 3;
 				for (int row = 0; row < 11; row++){
 					for (int column = 0; column < 11; column++){
-						if(HitOrMiss.hitOrMiss(aiBoard.getBoard(), row, column)) {
-							PlayerActions.heal(aiBoard, row, column);
+						if(PlayerActions.hitOrMiss(aiBoard, displayEnemyBoard, row, column)) {
+							PlayerActions.repair(aiBoard, displayEnemyBoard, row, column);
 						}
 						else {
 							if(randomNumber % 2 == 0) {
@@ -63,3 +63,4 @@ public class AI {
 		}
 		return orientation;
 	}
+}
