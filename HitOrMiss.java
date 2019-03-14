@@ -10,10 +10,20 @@ public class HitOrMiss {
 				if(selectedTile == " . ") {
 					hitToken = false;
 					enemyBoard[row][column] = " O ";
+
+					System.out.println("Miss!");
+				}
+				else if(selectedTile == " R "){
+					hitToken = true;
+					enemyBoard[row][column] = " X ";
+					System.out.println("Hit!");
+					
 				}
 				else {
 					hitToken = true;
-					enemyBoard[row][column] = " X ";
+					enemyBoard[row][column] = " x ";
+					System.out.println("Hit!");
+
 				}
 			}
 		}

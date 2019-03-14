@@ -14,6 +14,7 @@ public class PlayerActions {
 				if(selectedTile == " . ") {
 					enemyBoard.getBoard()[row][column] = " O ";
 					displayEnemyBoard.getBoard()[row][column] = " O ";
+					System.out.println("Miss!");
 				}
 				else if(selectedTile == " O "){
 					enemyBoard.getBoard()[row][column] = " O ";
@@ -26,13 +27,18 @@ public class PlayerActions {
 				else {
 					enemyBoard.getBoard()[row][column] = " x ";
 					displayEnemyBoard.getBoard()[row][column] = " x ";
+
+					System.out.println("Hit!");
+
 				}
 			}
 		}
 		
 	}
 	
-	public static void heal(BattleshipBoard playersBoard, int row, int column) {
+
+	public static void heal(BattleshipBoard playersBoard,BattleshipBoard displayBoard, int row, int column) {
+
 		if(playersBoard.getBoard()[row][column]== " . " || playersBoard.getBoard()[row][column]== " O "){
 			
 			System.out.println("You cant heal water though...");			
@@ -46,6 +52,9 @@ public class PlayerActions {
 		}
 		else if (playersBoard.getBoard()[row][column] == " x "){
 			playersBoard.getBoard()[row][column]= " R " ;
+
+			displayBoard.getBoard()[row][column]= " . " ;
+
 				
 			}
 		

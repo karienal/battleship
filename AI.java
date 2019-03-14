@@ -63,4 +63,3 @@ public class AI {
 		}
 		return orientation;
 	}
-}

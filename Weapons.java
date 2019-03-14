@@ -1,5 +1,6 @@
 
 public class Weapons {
+
 	
 	
 	public static void placeBeacon(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
@@ -30,5 +31,6 @@ public class Weapons {
 				}
 			}
 		}
+
 	}
 }
