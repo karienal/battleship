@@ -52,13 +52,8 @@ public class GameMain {
 				if(actionEqualsAttack) {
 					System.out.println("Your enemy's board:");
 					player1Enemy.boardPrint();
-
-					System.out.println("Enter the row to attack:");
-					int attackRow = keyboard.nextInt();
-					System.out.println("Enter the column to attack:");
-					int attackColumn = keyboard.nextInt();
-
-					PlayerActions.attack(player2, player1Enemy, attackRow, attackColumn);
+			
+					PlayerActions.attack(player2, player1Enemy);
 					player1Enemy.boardPrint();
 					System.out.println("Your results are above");
 					
@@ -67,12 +62,8 @@ public class GameMain {
 					System.out.println("Your board:");
 					player1.boardPrint();
 
-					System.out.println("Enter the row to repair:");
-					int repairRow = keyboard.nextInt();
-					System.out.println("Enter the column to repair:");
-					int repairColumn = keyboard.nextInt();
+					PlayerActions.repair(player1, player2Enemy);
 
-					PlayerActions.repair(player1, player2Enemy, repairRow, repairColumn);
 					player1.boardPrint();
 					System.out.println("Your results are above");
 
@@ -102,7 +93,7 @@ public class GameMain {
 		
 			else{
 			
-					System.out.println("Player 2. You have 1 turn. Do you want to attack the enemy ship or heal your ship?");
+					System.out.println("Player 2. You have 1 turn. You can attack the enemy, or repair your ship. Do you want to attack the enemy? y/n");
 
 					
 					String playerActionRequest = keyboard.nextLine();
@@ -110,18 +101,16 @@ public class GameMain {
 		
 		
 		
-					boolean actionEqualsAttack = playerActionRequest.contentEquals("attack");
+
+					boolean actionEqualsAttack = playerActionRequest.contentEquals("y");
+
 			
 					if(actionEqualsAttack) {
 						System.out.println("Your enemy's board:");
 						player2Enemy.boardPrint();
 
-						System.out.println("Enter the row to attack:");
-						int attackRow = keyboard.nextInt();
-						System.out.println("Enter the column to attack:");
-						int attackColumn = keyboard.nextInt();
+						PlayerActions.attack(player1, player2Enemy);
 
-						PlayerActions.attack(player1, player2Enemy, attackRow, attackColumn);
 						player2Enemy.boardPrint();
 						System.out.println("Your results are above");
 						
@@ -130,11 +119,9 @@ public class GameMain {
 						System.out.println("Your board:");
 						player2.boardPrint();
 
-						System.out.println("Enter the row to repair:");
-						int repairRow = keyboard.nextInt();
-						System.out.println("Enter the column to repair:");
-						int repairColumn = keyboard.nextInt();
-						PlayerActions.repair(player2, player1Enemy, repairRow, repairColumn);
+
+						PlayerActions.repair(player2, player1Enemy);
+
 						player2.boardPrint();
 						System.out.println("Your results are above");
 
