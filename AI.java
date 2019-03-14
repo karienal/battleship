@@ -19,34 +19,40 @@ public class AI {
 		if(diff >=1 && diff <= 3) {
 			if(diff == 1) {
 				difficulty = 1;
-				PlayerActions.attack(enemyBoard, displayEnemyBoard, randomNumber, randomNumber);
+				PlayerActions.attack(enemyBoard, displayEnemyBoard);
+				//Needs to send attack a row and column number still
 			}
 			else if(diff == 2) {
 				difficulty = 2;
 				if(randomNumber % 2 == 0) {
-					PlayerActions.attack(enemyBoard, displayEnemyBoard, randomNumber, randomNumber);
+					PlayerActions.attack(enemyBoard, displayEnemyBoard);
+					//Needs to send attack a row and column number still
+					
 				}
 				else {
 					int row = 0;
 					int column = 0;
-					PlayerActions.attack(enemyBoard, displayEnemyBoard, row, column);
+					PlayerActions.attack(enemyBoard, displayEnemyBoard);
+					//Needs to send attack a row and column number still
 				}
 			}
 			else {
 				difficulty = 3;
 				for (int row = 0; row < 11; row++){
 					for (int column = 0; column < 11; column++){
-						if(HitOrMiss.hitOrMiss(aiBoard.getBoard(), row, column)) {
-							PlayerActions.heal(aiBoard, displayEnemyBoard, row, column);
+						if(PlayerActions.hitOrMiss(aiBoard, displayEnemyBoard, row, column)) {
+							PlayerActions.repair(aiBoard, displayEnemyBoard);
 						}
 						else {
 							if(randomNumber % 2 == 0) {
-								PlayerActions.attack(enemyBoard, displayEnemyBoard, randomNumber, randomNumber);
+								PlayerActions.attack(enemyBoard, displayEnemyBoard);
+								//Needs to send attack a row and column number still
 							}
 							else {
-								row = 0;
-								column = 0;
-								PlayerActions.attack(enemyBoard, displayEnemyBoard, row, column);
+								row = randomNumber;
+								column = randomNumber;
+								PlayerActions.attack(enemyBoard, displayEnemyBoard);
+								//Needs to send attack a row and column number still
 							}
 					
 						}
