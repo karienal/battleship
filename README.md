@@ -37,3 +37,16 @@ Welcome to our little Battleship clone! It has our own little additions compared
                           
 3. The last player with ships surviving is the winner.
 
+
+
+
+References for Team 21 Project:
+
+Course Instructor: Nathaly Verwaal 
+We used TicTacToeGame example used in several lectures as the basis for building our Battleship Board using For loops in a 2-d array.
+
+
+Textbook: Savitch, Walter, 2018. Java: An Introduction to Problem Solving & Programming. 8th Edition. Pearson, NewYork.
+
+
+https://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
