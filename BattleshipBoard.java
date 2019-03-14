@@ -1,8 +1,10 @@
 
 public class BattleshipBoard{
 	String [] [] grid;
+
 	static int shipLength;
 	static int shipListElement = 1;
+
 
 	/*
 	*We make a board.
@@ -33,7 +35,9 @@ public class BattleshipBoard{
 	*the Ship class
 	*/
 
+
 	public void placeShip(BattleshipBoard aBoard, String shipChar, String orientation, int startRow, int startColumn){
+
 		Ship playerShip = new Ship(shipChar);
 		shipLength = playerShip.aShipCharList.size();
 			
@@ -42,6 +46,7 @@ public class BattleshipBoard{
 		*/
 		
 		if (orientation.equals("y")){
+
 			do{
 				grid[startRow][startColumn]=" "+playerShip.aShipCharList.get(shipListElement-1)+" ";
 				startRow++;
@@ -65,8 +70,10 @@ public class BattleshipBoard{
 				}
 			while(shipListElement<=shipLength);
 		}
+
 		shipListElement=1;
 		playerShip.aShipCharList.clear();			
+
 
 	}
 	
@@ -85,6 +92,7 @@ public class BattleshipBoard{
 	}
 	
 	
+
 	/*Tests to see if a ship placement is valid. Checs bounds or if placed on another ship/*/
 	
 	public  boolean validPlaceShip(BattleshipBoard aBoard,int startCol, int startRow, String shipChar , String orientation){
