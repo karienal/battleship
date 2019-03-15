@@ -50,3 +50,8 @@ Textbook: Savitch, Walter, 2018. Java: An Introduction to Problem Solving & Prog
 
 
 https://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+https://stackoverflow.com/questions/39163881/javafx-drop-down-button
+https://stackoverflow.com/questions/9738146/javafx-how-to-set-scene-background-image
+http://blog.adw.org/2018/05/church-cruise-ship-battleship/
+http://www.learningaboutelectronics.com/Articles/How-to-create-multiple-scenes-and-switch-between-scenes-in-JavaFX.php
+http://tutorials.jenkov.com/javafx/button.html
