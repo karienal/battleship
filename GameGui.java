@@ -16,8 +16,10 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -53,6 +55,7 @@ import javafx.stage.Stage;
 //            rightPane.setSpacing(10);
 //            border.setLeft(rightPane);
 
+            
             for(int y = 0; y < length; y++){
                 for(int x = 0; x < width; x++){
                 	
@@ -61,18 +64,24 @@ import javafx.stage.Stage;
 
                     // Create a new TextField in each Iteration
 //                    TextField tf = new TextField();
+
                 	tf = new Button();
                     tf.setPrefHeight(50);
                     tf.setPrefWidth(50);
                     tf.setAlignment(Pos.CENTER);
+                    tf.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
+
 //                    tf.setEditable(false);
                     if (y == 0) {
     					tf.setText(" " + Integer.toString(x) + " ");
+
     				}
     				else if(x == 0) {
     					tf.setText(" " + Integer.toString(y) + " ");
+    					
     					if(y == 10) {
     						tf.setText(Integer.toString(y) + " ");
+    						
     					}
     					else {
     						tf.setText(" " + Integer.toString(y) + " ");
@@ -81,24 +90,17 @@ import javafx.stage.Stage;
     					    					
     				else {
     					tf.setText("   ");	
+    					HandleButtonClick handle = new HandleButtonClick(tf);
+                    	tf.setOnAction(handle);
     				}
 
-                    root.getChildren().add(tf);
-//                    HandleButtonClick handler = new HandleButtonClick("Click");
-//                    tf.setOnAction(shipButtonHandler);
-                    
-                    tf.setOnAction(new EventHandler<ActionEvent>(){
-                    	@Override
-                    	public void handle(ActionEvent args) {
 
-                    		tf.setStyle("-fx-background-color: blue");
-                    	}
-                   
-                    });
+                    root.getChildren().add(tf);
+
 //                    
                     // Iterate the Index using the loops
                     root.setRowIndex(tf,y);
-                    root.setColumnIndex(tf,x);    
+                    root.setColumnIndex(tf,x);   
                     
     				}
             }
