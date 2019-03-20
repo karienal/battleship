@@ -10,6 +10,9 @@ public class GameMain {
 		//Game Set-up
 		int turnCount = 1;
 		boolean p1Turn = true;
+		boolean wantAI = false;
+		int difficulty = 1;
+		String response;
 		
 		BattleshipBoard player1 = new BattleshipBoard();
 		BattleshipBoard player1Enemy = new BattleshipBoard();
@@ -20,10 +23,31 @@ public class GameMain {
 		
 		
 		//Run Set up
+
+		/* Currently broken - Asks for AI but doesn't proceed to ask for difficulty
+		System.out.println("Do you want to play against the computer? y/n");
+		response = keyboard.nextLine();
+		if (response == "y") {
+			System.out.println("Difficulty Level 1, 2, or 3? (Type the number.)");
+			int diff = keyboard.nextInt();
+			if (diff >=1 && diff <= 3) {
+				difficulty = diff;
+				wantAI = true;
+			}
+			else {
+				System.out.println("Invalid input. Defaulting to no AI.");
+				wantAI = false;
+			}
+		} */
 		
 		do{
 			System.out.println("Player 1, your turn");
 			PlayerActions.setUp(player1);
+			/* Currently broken - just asks for player 1's placements despite !wantAI
+			if (wantAI = false) {
+				System.out.println("Player 2, your turn:");
+				PlayerActions.setUp(player2);
+			} */
 			System.out.println("Player 2, your turn");
 			PlayerActions.setUp(player2);
 			++turnCount;

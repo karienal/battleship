@@ -38,6 +38,15 @@ public class PlayerActions {
 		int attackColumn = keyboard.nextInt();
 		hitOrMiss(enemyBoard, displayEnemyBoard, attackRow, attackColumn);
 	
+	}	
+
+	public static void aiAttack(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int aiRow, int aiColumn) {
+		System.out.println("Enter the row to attack:");
+		int attackRow = aiRow;
+		System.out.println("Enter the column to attack:");
+		int attackColumn = aiColumn;
+		hitOrMiss(enemyBoard, displayEnemyBoard, attackRow, attackColumn);
+	
 	}
 	
 	public static Boolean hitOrMiss(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
