@@ -1,72 +1,60 @@
 import java.util.Random;
 
-public class AI {
-	int difficulty = 1;
-	//https://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
-	Random rand = new Random();
-	int randomNumber = rand.nextInt((10 - 1) + 1) + 1;
-	
-	
-	public AI(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int diff) {
-		String orientation = getOrientation(randomNumber);
-		BattleshipBoard aiBoard = new BattleshipBoard();
-		aiBoard.placeShip(aiBoard, "A", orientation, randomNumber, randomNumber);
-		aiBoard.placeShip(aiBoard, "B", orientation, randomNumber, randomNumber);
-		aiBoard.placeShip(aiBoard, "S", orientation, randomNumber, randomNumber);
-		aiBoard.placeShip(aiBoard, "C", orientation, randomNumber, randomNumber);
-		aiBoard.placeShip(aiBoard, "D", orientation, randomNumber, randomNumber);
-		
-		if(diff >=1 && diff <= 3) {
-			if(diff == 1) {
-				difficulty = 1;
-				PlayerActions.aiAttack(enemyBoard, displayEnemyBoard, randomNumber, randomNumber);
-					//aiAttack recieves randomNumber for now
-			}
-			else if(diff == 2) {
-				difficulty = 2;
-				if(randomNumber % 2 == 0) {
-					PlayerActions.aiAttack(enemyBoard, displayEnemyBoard, randomNumber, randomNumber);
-					//aiAttack recieves randomNumber for now
-					
+public class AI extends Player{
+	private static int difficulty = 0; /* Difficulty is accessed throughout AI */
+	private Random random = new Random(); 
+	private int randomNumber;
+	private HitOrMiss hitOrMiss = new HitOrMiss();
+
+	public AI(BattleshipBoard myBoard, BattleshipBoard yourBoard, int difficulty) {
+		super(myBoard, yourBoard);
+		this.difficulty = difficulty;
+	}
+
+	public void setUp(BattleshipBoard p2Board) {
+		Boolean validPlacement = false;
+		String axis;
+		for (int index = 0; index > 6; index++) {
+			while (!validPlacement) {
+				String ship = super.getShipList().get(index);
+				Boolean randomBoolean = random.nextBoolean();
+				if (randomBoolean) {
+					axis = "x";
 				}
 				else {
-					int row = 0;
-					int column = 0;
-					PlayerActions.aiAttack(enemyBoard, displayEnemyBoard, randomNumber, randomNumber);
-					//aiAttack recieves randomNumber for now
+					axis = "y";
 				}
-			}
-			else {
-				difficulty = 3;
-				for (int row = 0; row < 11; row++){
-					for (int column = 0; column < 11; column++){
-						if(PlayerActions.hitOrMiss(aiBoard, displayEnemyBoard, row, column)) {
-							PlayerActions.repair(aiBoard, displayEnemyBoard);
-						}
-						else {
-							if(randomNumber % 2 == 0) {
-								PlayerActions.aiAttack(enemyBoard, displayEnemyBoard, randomNumber, randomNumber);
-								//aiAttack recieves randomNumber for now
-							}
-							else {
-								row = randomNumber;
-								column = randomNumber;
-								PlayerActions.aiAttack(enemyBoard, displayEnemyBoard, randomNumber, randomNumber);
-								//aiAttack recieves randomNumber for now
-							}
-					
-						}
-					}
-				}
+				int row = random.nextInt(10) + 1;
+				int column = random.nextInt(10) + 1;
+				validPlacement = super.getMyBoard().validPlaceShip(super.getMyBoard(), column, row, ship, axis);
 			}
 		}
 	}
-	
-	public String getOrientation(int rand) {
-		String orientation = "x";
-		if(rand % 2 == 0) {
-			orientation = "y";
+	 
+	public void attack() {
+		int row = 0;
+		int column = 0;
+		if (this.difficulty == 1) {
+			row = random.nextInt(10) + 1;
+			column = random.nextInt(10) + 1;
 		}
-		return orientation;
+		else if (this.difficulty == 2) {
+			//unimplemented, need info on intended AI behaviour.
+		}
+		else if (this.difficulty == 3) {
+			//unimplemented, need info on inteded AI behaviour.
+		}
+		hitOrMiss.hit(super.getMyBoard(), super.getYourBoard(), row, column);
+	}
+	public void repair() {
+		int row = 0;
+		int column = 0;
+		while (!validTarget) {
+			if (this.difficulty == 1) {
+				row = random.nextInt(10) + 1;
+				column = random.nextInt(10) + 1;
+			}
+			validTarget = hitOrMiss.repair(super.getMyBoard(), super.getYourBoard(), row, column);
+		}
 	}
 }
