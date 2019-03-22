@@ -49,6 +49,7 @@ public class AI extends Player{
 	public void repair() {
 		int row = 0;
 		int column = 0;
+		Boolean validTarget = false;
 		while (!validTarget) {
 			if (this.difficulty == 1) {
 				row = random.nextInt(10) + 1;
