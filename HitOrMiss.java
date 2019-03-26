@@ -25,29 +25,32 @@ public class HitOrMiss{
 					enemyBoard.getBoard()[row][column] = " x ";
 					displayEnemyBoard.getBoard()[row][column] = " x ";
 					hitToken = true;
-					System.out.println("Hit!");
-
 				}
 			}
 		}
 		return hitToken;
 	}
+
 	public Boolean repair(BattleshipBoard playersBoard,BattleshipBoard displayEnemyBoard, int row, int column) {
+		String selectedTile = playersBoard.getBoard()[row][column];
 		Boolean repairToken = false;
-		if(playersBoard.getBoard()[row][column]== " . " || playersBoard.getBoard()[row][column]== " O "){
-			System.out.println("You cant heal water though...");			
-		}
-		else if(playersBoard.getBoard()[row][column]!= " x " && playersBoard.getBoard()[row][column]!= " X "){
-			System.out.println("Chill, your ship is fine.");
-		}
-		else if (playersBoard.getBoard()[row][column] == " x "){
-			playersBoard.getBoard()[row][column]= " R " ;
-			displayEnemyBoard.getBoard()[row][column]= " . " ;
-			repairToken = true;
-			}
-		else {
-			System.out.println("She broke.");
+		if (row > 0 & row < 12) {
+			if (column > 0 & column < 12)
+				if(selectedTile == " . " || playersBoard.getBoard()[row][column]== " O ") {
+					repairToken = false;
+				}
+				else if(selectedTile != " x " && playersBoard.getBoard()[row][column]!= " X ") {
+					repairToken = false;
+				}
+				else if (selectedTile == " x "){
+					playersBoard.getBoard()[row][column]= " R " ;
+					displayEnemyBoard.getBoard()[row][column]= " . " ;
+					repairToken = true;
+				}
 		}
 		return repairToken;
 	}
+
+	public Boolean beacon(
+	)
 }
