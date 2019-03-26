@@ -1,6 +1,6 @@
 import java.util.*;
 public class Human extends Player{
-	private HitOrMiss hitOrMiss = new HitOrMiss();
+	private BoardUpdate boardUpdate = new BoardUpdate();
 	Boolean guiOn = false;
 	ArrayList<String> shipNameList = new ArrayList<String>();
 	public Scanner keyboard = new Scanner(System.in);
@@ -40,28 +40,30 @@ public class Human extends Player{
 				if (!guiOn) {
 					Boolean validAxis = true;
 					while (!validAxis) {
-						System.out.println("What orientation do you want to place your " + shipName + "? (x or y)");
-						axis = keyboard.nextLine().toUpperCase();
+						BattleshipBoard.setOrientation();
+						BattleshipBoard.getOrientation();
 						if (axis != "X" | axis != "Y") {
 							validAxis = false;
 						}
 					}
+					BattleshipBoard.setRowAndColumn();
 					Boolean validRow = true;
 					while (!validRow) {
-						System.out.println("What row do you want to place your " + shipName + "? (1-10)");
-						row = keyboard.nextInt();
+						row = BattleshipBoard.getRow();
 						if (row > 10 | row < 1) {
 							validRow = false;
 						}
 					}
 					Boolean validColumn = true;
 					while (!validColumn) {
-						System.out.println("What column do you want to place your " + shipName + "? (1-10)");
-						column = keyboard.nextInt();
+						column = BattleshipBoard.getColumn();
 						if (column > 10 | column < 1) {
 							validColumn = false;
 						}
 					}
+				}
+				if (guiOn) {
+					
 				}
 				validPlacement = super.getMyBoard().validPlaceShip(super.getMyBoard(), column, row, ship, axis);
 			}
@@ -75,22 +77,21 @@ public class Human extends Player{
 		if (!guiOn) {
 			Boolean validRow = true;
 			while (!validRow) {
-				System.out.println("What row do you want to attack? (1-10)");
-				row = keyboard.nextInt();
+				BattleshipBoard.setRowAndColumn();
+				row = BattleshipBoard.getRow();
 				if (row > 10 | row < 1) {
 					validRow = false;
 				}
 			}
 			Boolean validColumn = true;
 			while (!validColumn) {
-				System.out.println("What column do you want to attack? (1-10)");
-				column = keyboard.nextInt();
+				column = BattleshipBoard.getColumn();
 				if (column > 10 | column < 1) {
 					validColumn = false;
 				}
 			}
 		}
-		hitOrMiss.hit(super.getMyBoard(), super.getYourBoard(), row, column);
+		boardUpdate.hit(super.getMyBoard(), super.getYourBoard(), row, column);
 
 	}
 	public void repair() {
@@ -101,22 +102,21 @@ public class Human extends Player{
 			if (!guiOn) {
 				Boolean validRow = true;
 				while (!validRow) {
-					System.out.println("What row do you want to attack? (1-10)");
-					row = keyboard.nextInt();
+					BattleshipBoard.setRowAndColumn();
+					row = BattleshipBoard.getRow();
 					if (row > 10 | row < 1) {
 						validRow = false;
 					}
 				}
 				Boolean validColumn = true;
 				while (!validColumn) {
-					System.out.println("What column do you want to attack? (1-10)");
-					column = keyboard.nextInt();
+					column = BattleshipBoard.getColumn();
 					if (column > 10 | column < 1) {
 						validColumn = false;
 					}
 				}
 			}
-			validTarget = hitOrMiss.repair(super.getMyBoard(), super.getYourBoard(), row, column);
+			validTarget = boardUpdate.repair(super.getMyBoard(), super.getYourBoard(), row, column);
 		}
 		while (!validTarget);
 	}
