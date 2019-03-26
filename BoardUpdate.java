@@ -50,6 +50,6 @@ public class BoardUpdate{
 	}
 
 	public Boolean beacon() {
-		
+		return true;
 	}
 }
