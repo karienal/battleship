@@ -1,167 +1,85 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameMain {
 	
 	public static Scanner keyboard = new Scanner(System.in);
+	private int difficultyLevel;
+	private boolean player1Turn = true;
+	private static BattleshipBoard board1 = new BattleshipBoard();
+	private static BattleshipBoard displayBoard1 = new BattleshipBoard();
+	private	static BattleshipBoard board2 = new BattleshipBoard();
+	private static BattleshipBoard displayBoard2 = new BattleshipBoard();
 	
+	private static Player player1;
+	private static Player player2;
 	
-	public static void main(String[] args) {
-		
-		//Game Set-up
-		int turnCount = 1;
-		boolean p1Turn = true;
-		
-		BattleshipBoard player1 = new BattleshipBoard();
-		BattleshipBoard player1Enemy = new BattleshipBoard();
-		
-		BattleshipBoard player2 = new BattleshipBoard();
-		BattleshipBoard player2Enemy = new BattleshipBoard();
+	public GameMain() {
+		player1 = new Human(board1, displayBoard1, false);
+		boolean compPlayer = true;
+		System.out.println("Play against computer? (y/n)");
+		String messageResponse = keyboard.nextLine().toUpperCase();
+		if(messageResponse == "Y") {
+			System.out.println("Set difficulty level: (1,2,or 3)");
+			difficultyLevel = keyboard.nextInt();
+			compPlayer = true;
 			
-		
-		
-		//Run Set up
-		
-		do{
-			System.out.println("Player 1, your turn");
-			PlayerActions.setUp(player1);
-			System.out.println("Player 2, your turn");
-			PlayerActions.setUp(player2);
-			++turnCount;
+		}else {
+			compPlayer = false;
 		}
-		while(turnCount <=2);
-		System.out.println("Time to play! WOOOOO!!");
+		if(compPlayer == true) {
+			player2 = new AI(board2, displayBoard2, difficultyLevel);
+		}else {
+			player2 = new Human(board2, displayBoard2, false);
+		}
 		
-		
-		boolean winCondition=false;
-		//Game Play for Player 1's Turn:
-		do{
-			int didWin = 0;
-      
-			/*boolean p1Turn = true;*/
-
-			
-			
-			
-			if (p1Turn ==true){
-				System.out.println("Player 1. You have 1 turn. You can attack the enemy, or repair your ship. Do you want to attack the enemy? y/n");
-				String playerActionRequest = keyboard.nextLine();
-				
-				
-				boolean actionEqualsAttack = playerActionRequest.contentEquals("y");
-				
-				if(actionEqualsAttack) {
-					System.out.println("Your enemy's board:");
-					player1Enemy.boardPrint();
-			
-					PlayerActions.attack(player2, player1Enemy);
-					player1Enemy.boardPrint();
-					System.out.println("Your results are above");
-					
-					}
-				else {
-					System.out.println("Your board:");
-					player1.boardPrint();
-
-					PlayerActions.repair(player1, player2Enemy);
-
-					player1.boardPrint();
-					System.out.println("Your results are above");
-
-					}
-					
-					
-				/*Sketchy incomplete win condition. Kind of works sometimes though*/	
-				for(int row = 1 ; row < 11 ; row++) {
-					for(int column = 1 ; column < 11 ; column++) {
-
-						if(player2.getBoard()[row][column]!= " . "&& player2.getBoard()[row][column]!= " X " && player2.getBoard()[row][column]!= " O " /*&& player2.getBoard()[row][column]!= " S "*/) {
-							didWin++;
-						}
-						else {}
-					}
-				}
-
-				
-					
-				p1Turn=false;
-				
-
-				
-				
-				
-				}
-		
-			else{
-			
-					System.out.println("Player 2. You have 1 turn. You can attack the enemy, or repair your ship. Do you want to attack the enemy? y/n");
-
-					
-					String playerActionRequest = keyboard.nextLine();
-		
-		
-		
-		
-
-					boolean actionEqualsAttack = playerActionRequest.contentEquals("y");
-
-			
-					if(actionEqualsAttack) {
-						System.out.println("Your enemy's board:");
-						player2Enemy.boardPrint();
-
-						PlayerActions.attack(player1, player2Enemy);
-
-						player2Enemy.boardPrint();
-						System.out.println("Your results are above");
-						
-						}
-					else {
-						System.out.println("Your board:");
-						player2.boardPrint();
-
-
-						PlayerActions.repair(player2, player1Enemy);
-
-						player2.boardPrint();
-						System.out.println("Your results are above");
-
-						}
-					
-						/*Sketchy incomplete win condition. Kind of works sometimes though*/	
-						for(int row = 1 ; row < 11 ; row++) {
-							for(int column = 1 ; column < 11 ; column++) {
-								if(player1.getBoard()[row][column]!= " . "&& player1.getBoard()[row][column]!= " X " && player1.getBoard()[row][column]!= " O " /*&& player1.getBoard()[row][column]!= " S "*/) {
-								didWin++;
-							}
-							else {}
-							}
-						}
-					
-
-					p1Turn=true;
-				
-					
-				}
-				
-
-				/*Sketchy incomplete win condition. Kind of works sometimes though*/	
-				if (didWin==0){
-					System.out.println("a player has won!");
-					winCondition = true;}
-				
-				
-
-				
-				
-				
-				
-				
-				
-			}
-		while(winCondition==false);
-	
 	}
 	
-
+	public void playGame() {
+		while(!gameOver(board1)) {
+			while(!gameOver(board2)) {
+			Player currentPlayer;
+			if(player1Turn) {
+				currentPlayer = player1;
+				player1Turn = false;
+			}else {
+				currentPlayer = player2;
+				player1Turn = true;
+			}
+			currentPlayer.getMyBoard().boardPrint();
+			System.out.println("Do you want to attack? y/n");
+			String turnSelect = keyboard.nextLine();
+			if(turnSelect == "Y") {
+			currentPlayer.attack();
+			}else {
+			currentPlayer.repair();		
+			}
+			}
+		}
+	}
+		
+	//https://stackoverflow.com/questions/3571945/find-if-a-string-is-present-in-an-array
+	
+	public boolean gameOver(BattleshipBoard aBoard) {
+		boolean gameOver = false;
+		if(Arrays.asList(aBoard).contains(" D ")) {}
+		else if(Arrays.asList(aBoard).contains(" S ")) {}
+		else if(Arrays.asList(aBoard).contains(" C ")) {}
+		else if(Arrays.asList(aBoard).contains(" B ")) {}
+		else if(Arrays.asList(aBoard).contains(" A ")) {}
+		else if(Arrays.asList(aBoard).contains(" R ")) {}
+		else {
+			gameOver = true;
+		}				
+		return gameOver;
+	}
+	
+	public static void main(String[] args) {
+		GameMain game = new GameMain();
+		player1.getMyBoard().boardPrint();
+		player1.setUp(board1);
+		player2.getMyBoard().boardPrint();
+		player2.setUp(board2);
+		game.playGame();
+	}
 }
-
