@@ -40,23 +40,23 @@ public class Human extends Player{
 				if (guiOn = false) {
 					Boolean validAxis = true;
 					while (!validAxis) {
-						BattleshipBoard.setOrientation();
-						BattleshipBoard.getOrientation();
+						myBoard.setOrientation();
+						myBoard.getOrientation();
 						if (axis != "X" | axis != "Y") {
 							validAxis = false;
 						}
 					}
-					BattleshipBoard.setRowAndColumn();
+					myBoard.setRowAndColumn();
 					Boolean validRow = true;
-					while (!validRow) {
-						row = BattleshipBoard.getRow();
+					while (validRow = false) {
+						row = myBoard.getRow();
 						if (row > 10 | row < 1) {
 							validRow = false;
 						}
 					}
 					Boolean validColumn = true;
 					while (!validColumn) {
-						column = BattleshipBoard.getColumn();
+						column = myBoard.getColumn();
 						if (column > 10 | column < 1) {
 							validColumn = false;
 						}
