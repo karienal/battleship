@@ -37,7 +37,7 @@ public class Human extends Player{
 			do {
 				String ship = super.getShipList().get(index);
 				String shipName = shipNameList.get(index);
-				if (!guiOn) {
+				if (guiOn = false) {
 					Boolean validAxis = true;
 					while (!validAxis) {
 						BattleshipBoard.setOrientation();
@@ -62,7 +62,7 @@ public class Human extends Player{
 						}
 					}
 				}
-				if (guiOn) {
+				if (guiOn = true) {
 					
 				}
 				validPlacement = super.getMyBoard().validPlaceShip(super.getMyBoard(), column, row, ship, axis);
