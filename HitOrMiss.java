@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class HitOrMiss{
+public class BoardUpdate{
 
 	public Boolean hit(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
 		String selectedTile = enemyBoard.getBoard()[row][column];
@@ -10,14 +10,12 @@ public class HitOrMiss{
 				if(selectedTile == " . ") {
 					enemyBoard.getBoard()[row][column] = " O ";
 					displayEnemyBoard.getBoard()[row][column] = " O ";
-					System.out.println("Miss!");
-										
 				}
 				else if(selectedTile == " O "){
 					enemyBoard.getBoard()[row][column] = " O ";
 					displayEnemyBoard.getBoard()[row][column] = " O ";
 					}
-					else if(selectedTile == " R "){
+				else if(selectedTile == " R "){
 					enemyBoard.getBoard()[row][column] = " X ";
 					displayEnemyBoard.getBoard()[row][column] = " X ";
 					}
@@ -52,5 +50,6 @@ public class HitOrMiss{
 	}
 
 	public Boolean beacon(
+		
 	)
 }
