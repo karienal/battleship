@@ -1,6 +1,6 @@
 import java.util.*;
 public class Human extends Player{
-	private BoardUpdate boardUpdate = new BoardUpdate();
+	private HitOrMiss hitOrMiss = new HitOrMiss();
 	Boolean guiOn = false;
 	ArrayList<String> shipNameList = new ArrayList<String>();
 	public Scanner keyboard = new Scanner(System.in);
@@ -37,33 +37,30 @@ public class Human extends Player{
 			do {
 				String ship = super.getShipList().get(index);
 				String shipName = shipNameList.get(index);
-				if (guiOn = false) {
+				if (!guiOn) {
 					Boolean validAxis = true;
 					while (!validAxis) {
-						myBoard.setOrientation();
-						myBoard.getOrientation();
+						BattleshipBoard.setOrientation();
+						BattleshipBoard.getOrientation();
 						if (axis != "X" | axis != "Y") {
 							validAxis = false;
 						}
 					}
-					myBoard.setRowAndColumn();
+					BattleshipBoard.setRowAndColumn();
 					Boolean validRow = true;
-					while (validRow = false) {
-						row = myBoard.getRow();
+					while (!validRow) {
+						row = BattleshipBoard.getRow();
 						if (row > 10 | row < 1) {
 							validRow = false;
 						}
 					}
 					Boolean validColumn = true;
 					while (!validColumn) {
-						column = myBoard.getColumn();
+						column = BattleshipBoard.getColumn();
 						if (column > 10 | column < 1) {
 							validColumn = false;
 						}
 					}
-				}
-				if (guiOn = true) {
-					
 				}
 				validPlacement = super.getMyBoard().validPlaceShip(super.getMyBoard(), column, row, ship, axis);
 			}
@@ -91,7 +88,7 @@ public class Human extends Player{
 				}
 			}
 		}
-		boardUpdate.hit(super.getMyBoard(), super.getYourBoard(), row, column);
+		hitOrMiss.hit(super.getMyBoard(), super.getYourBoard(), row, column);
 
 	}
 	public void repair() {
@@ -116,7 +113,7 @@ public class Human extends Player{
 					}
 				}
 			}
-			validTarget = boardUpdate.repair(super.getMyBoard(), super.getYourBoard(), row, column);
+			validTarget = hitOrMiss.repair(super.getMyBoard(), super.getYourBoard(), row, column);
 		}
 		while (!validTarget);
 	}
