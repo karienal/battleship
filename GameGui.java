@@ -1,11 +1,8 @@
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -27,6 +24,7 @@ import javafx.stage.Stage;
 
     public class GameGui extends Application {   
     	private Button tf;
+    	private Button[][] gridButtons = new Button[11][11];
 
         @Override
         public void start(Stage primaryStage) {
@@ -34,6 +32,41 @@ import javafx.stage.Stage;
             int SIZE = 11;
             int length = SIZE;
             int width = SIZE;
+            
+            //Scene 1
+            
+            StackPane root2 = new StackPane();
+    		//https://stackoverflow.com/questions/9738146/javafx-how-to-set-scene-background-image
+    		StackPane sp = new StackPane();
+    		//http://blog.adw.org/2018/05/church-cruise-ship-battleship/
+            BackgroundImage myBI= new BackgroundImage(new Image("battleship_image.jpg",1000, 900,false,true),
+                    BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                      BackgroundSize.DEFAULT);
+            sp.setBackground(new Background(myBI));
+            root2.getChildren().add(sp);
+
+            BorderPane border2 = new BorderPane();
+            Label label1 = new Label("BattleShip");
+            label1.setPadding(new Insets(100, 10, 10, 210));
+            label1.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 100));
+            label1.setTextFill(Color.WHITE);
+            border2.setTop(label1);
+            
+            HBox hbox = new HBox();
+            Button button = new Button("Play");
+            //http://www.learningaboutelectronics.com/Articles/How-to-create-multiple-scenes-and-switch-between-scenes-in-JavaFX.php
+//            button.setOnAction(e -> primaryStage.setScene(scene2));
+            
+            hbox.setPadding(new Insets(100, 10, 371, 435));
+            //http://tutorials.jenkov.com/javafx/button.html
+            button.setStyle("-fx-text-fill: navy; -fx-font-size: 4em; -fx-background-color: white");
+            border2.setBottom(hbox);
+            hbox.getChildren().add(button);
+            root2.getChildren().add(border2);
+            
+    		Scene scene1 = new Scene(root2, 1000, 900);
+            
+            // Scene 2
             
             BorderPane border = new BorderPane();
             HBox titlePane = new HBox();
@@ -48,31 +81,28 @@ import javafx.stage.Stage;
             leftPane.setPadding(new Insets(50, 50, 50, 50));
             leftPane.setSpacing(10);
             border.setLeft(leftPane);
-//            VBox rightPane = new VBox();
-//            rightPane.setPadding(new Insets(50, 100, 50, 100));
-//            rightPane.setSpacing(10);
-//            border.setLeft(rightPane);
 
+            
             for(int y = 0; y < length; y++){
                 for(int x = 0; x < width; x++){
                 	
-                    //Random rand = new Random();
-                    //int rand1 = rand.nextInt(2);
 
-                    // Create a new TextField in each Iteration
-//                    TextField tf = new TextField();
                 	tf = new Button();
                     tf.setPrefHeight(50);
                     tf.setPrefWidth(50);
                     tf.setAlignment(Pos.CENTER);
-//                    tf.setEditable(false);
+                    tf.setStyle("-fx-border-color: black; -fx-border-width: 2px; -fx-background-color: white;");
+
                     if (y == 0) {
     					tf.setText(" " + Integer.toString(x) + " ");
+
     				}
     				else if(x == 0) {
     					tf.setText(" " + Integer.toString(y) + " ");
+    					
     					if(y == 10) {
     						tf.setText(Integer.toString(y) + " ");
+    						
     					}
     					else {
     						tf.setText(" " + Integer.toString(y) + " ");
@@ -81,24 +111,17 @@ import javafx.stage.Stage;
     					    					
     				else {
     					tf.setText("   ");	
+    					HandleButtonClick handle = new HandleButtonClick(tf);
+                    	tf.setOnAction(handle);
     				}
+                  
+                    gridButtons[y][x] = tf;
+                    root.add(gridButtons[y][x], y, x); 
 
-                    root.getChildren().add(tf);
-//                    HandleButtonClick handler = new HandleButtonClick("Click");
-//                    tf.setOnAction(shipButtonHandler);
-                    
-                    tf.setOnAction(new EventHandler<ActionEvent>(){
-                    	@Override
-                    	public void handle(ActionEvent args) {
-
-                    		tf.setStyle("-fx-background-color: blue");
-                    	}
-                   
-                    });
 //                    
                     // Iterate the Index using the loops
                     root.setRowIndex(tf,y);
-                    root.setColumnIndex(tf,x);    
+                    root.setColumnIndex(tf,x);   
                     
     				}
             }
@@ -125,51 +148,41 @@ import javafx.stage.Stage;
                 
             
             Scene scene2 = new Scene(border, 900, 900);  
-            //Scene 2
-            
-            StackPane root2 = new StackPane();
-    		//https://stackoverflow.com/questions/9738146/javafx-how-to-set-scene-background-image
-    		StackPane sp = new StackPane();
-    		//http://blog.adw.org/2018/05/church-cruise-ship-battleship/
-            BackgroundImage myBI= new BackgroundImage(new Image("battleship_image.jpg",1000, 900,false,true),
-                    BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                      BackgroundSize.DEFAULT);
-            sp.setBackground(new Background(myBI));
-            root2.getChildren().add(sp);
-
-            BorderPane border2 = new BorderPane();
-            Label label1 = new Label("BattleShip");
-            label1.setPadding(new Insets(100, 10, 10, 210));
-            label1.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 100));
-            label1.setTextFill(Color.WHITE);
-            border2.setTop(label1);
-            
-            HBox hbox = new HBox();
-            Button button = new Button("Play");
-            //http://www.learningaboutelectronics.com/Articles/How-to-create-multiple-scenes-and-switch-between-scenes-in-JavaFX.php
+  
             button.setOnAction(e -> primaryStage.setScene(scene2));
             
-            hbox.setPadding(new Insets(100, 10, 371, 435));
-            //http://tutorials.jenkov.com/javafx/button.html
-            button.setStyle("-fx-text-fill: navy; -fx-font-size: 4em");
-            border2.setBottom(hbox);
-            hbox.getChildren().add(button);
-            root2.getChildren().add(border2);
-            
-    		Scene scene1 = new Scene(root2, 1000, 900);
-    		//Scene1
-           
             primaryStage.setTitle("Awesome Battleship Game");
             primaryStage.setScene(scene1);
             primaryStage.show();
             
         }
-       
-//        EventHandler<ActionEvent> shipButtonHandler = new EventHandler<ActionEvent>() {
-//        	public void handle(ActionEvent HandleShipButtonClick) {
-//        		tf.setStyle("-fx-background-color: blue");
-//        	}
-//        };
+        
+        public void placeShip(BattleshipBoard aBoard, String shipChar, String orientation, int startRow, int startColumn) {
+        	
+        }
+        
+//        public  boolean validPlaceShip(BattleshipBoard aBoard,int startCol, int startRow, String shipChar , String orientation){
+//        	boolean valid = false;
+//        	return valid;
+//        }
+        
+        public static void setUp(BattleshipBoard playerBoard) {
+        	
+        }
+        
+        public static void attack(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard) {
+        	
+        }
+        
+//        public static Boolean hitOrMiss(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
+//        	boolean hitToken = false;
+//        	return hitToken;
+//        }
+        
+        public static void repair(BattleshipBoard playersBoard,BattleshipBoard displayBoard) {
+        	
+        }
+
         public static void main(String[] args) {    
             launch(args);
         }    
