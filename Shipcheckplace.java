@@ -29,28 +29,28 @@ public class Shipcheckplace {
 	 * this checks for bounds for the bounds on the y axis
 	 */
 	public  boolean validShipRow(BattleshipBoard aBoard,int startCol, int startRow, String shipChar , String orientation) {
-		boolean placeship = false;
+		boolean placeShip = false;
 		String shipCheck = shipChar;
 		shipCheck.toUpperCase();
 		
 		if (orientation.equals("x")|| orientation.equals("X")) {
 			if(shipCheck.equals("D") && startCol<=9) {
-				return placeship==true;
+				return placeShip==true;
 			}
 			else if(shipCheck.contentEquals("S") && startCol<=8) {
-				return placeship==true;
+				return placeShip==true;
 			}
 			else if(shipCheck.equals("C")&& startCol<=8) {
-				return placeship==true;
+				return placeShip==true;
 			}
 			else if(shipCheck.equals("B")&&startCol<=7) {
-				return placeship==true;
+				return placeShip==true;
 			}
 			else if(shipCheck.equals("A")&&startCol<=6) {
-				return placeship==true;
+				return placeShip==true;
 			}
 		}
-		return placeship;
+		return placeShip;
 	}
 	public boolean overlapCheck(BattleshipBoard aBoard,int startCol, int startRow, String shipChar , String orientation) {
 		boolean overlapCheck = false;
