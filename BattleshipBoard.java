@@ -1,9 +1,11 @@
+import java.util.Scanner;
 
 public class BattleshipBoard{
 	String [] [] grid;
+	
 	static int shipLength;
 	static int shipListElement = 1;
-
+	
 	/*
 	*We make a board.
 	*/
@@ -37,10 +39,7 @@ public class BattleshipBoard{
 		Ship playerShip = new Ship(shipChar);
 		shipLength = playerShip.aShipCharList.size();
 			
-		/*
-		*Start working with the input.
-		*/
-		
+	
 		if (orientation.equals("y")){
 			do{
 				grid[startRow][startColumn]=" "+playerShip.aShipCharList.get(shipListElement-1)+" ";
@@ -86,7 +85,7 @@ public class BattleshipBoard{
 	
 	
 	/*Tests to see if a ship placement is valid. Checs bounds or if placed on another ship/*/
-	
+	/**
 	public  boolean validPlaceShip(BattleshipBoard aBoard,int startCol, int startRow, String shipChar , String orientation){
 		boolean placeShipHere=false;
 		int validPlace = 0;
@@ -140,5 +139,5 @@ public class BattleshipBoard{
 		
 		return placeShipHere;
 	}
-	
+		*/
 }

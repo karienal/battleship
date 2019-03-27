@@ -1,6 +1,7 @@
 import java.util.*;
 public class Human extends Player{
-	private HitOrMiss hitOrMiss = new HitOrMiss();
+	ShipCheckPlace checkShips = new ShipCheckPlace();
+	private BoardUpdate BoardUpdate = new BoardUpdate();
 	Boolean guiOn = false;
 	ArrayList<String> shipNameList = new ArrayList<String>();
 	public Scanner keyboard = new Scanner(System.in);
@@ -29,43 +30,51 @@ public class Human extends Player{
 	}
 
 	public void setUp(BattleshipBoard myBoard) {
+		/**
 		Boolean validPlacement = false;
 		String axis = "X";
-		int row = 1;
-		int column = 1;
+		String shipChar = "";
+		int row = 0;
+		int column = 0;
 		for (int index = 0; index > 6; index++) {
 			do {
 				String ship = super.getShipList().get(index);
 				String shipName = shipNameList.get(index);
 				if (!guiOn) {
-					Boolean validAxis = true;
+					Boolean validAxis = false;
 					while (!validAxis) {
-						BattleshipBoard.setOrientation();
-						BattleshipBoard.getOrientation();
+						Player.setOrientation();
+						Player.getOrientation();
 						if (axis != "X" | axis != "Y") {
 							validAxis = false;
 						}
 					}
-					BattleshipBoard.setRowAndColumn();
-					Boolean validRow = true;
+					Player.setRowAndColumn();
+					Boolean validRow = false;
 					while (!validRow) {
-						row = BattleshipBoard.getRow();
+						row = Player.getRow();
 						if (row > 10 | row < 1) {
 							validRow = false;
 						}
 					}
-					Boolean validColumn = true;
+					Boolean validColumn = false;
 					while (!validColumn) {
-						column = BattleshipBoard.getColumn();
+						column = Player.getColumn();
 						if (column > 10 | column < 1) {
 							validColumn = false;
 						}
 					}
 				}
-				validPlacement = super.getMyBoard().validPlaceShip(super.getMyBoard(), column, row, ship, axis);
+				validPlacement = checkShips.shipCheckPlace(super.getMyBoard(), shipChar, Player.getOrientation(), Player.getRow(), Player.getColumn());
 			}
 			while (!validPlacement);
+		} */
+		for (int i=0; i<6; i++){
+			System.out.println("Where to you want to place your "+ shipNameList[i]);
+			myBoard.setRowAndColumn();
+			
 		}
+		System.out.print(myBoard.getRow()+ myBoard.getColumn());
 	}
 	 
 	public void attack() {
@@ -74,21 +83,21 @@ public class Human extends Player{
 		if (!guiOn) {
 			Boolean validRow = true;
 			while (!validRow) {
-				BattleshipBoard.setRowAndColumn();
-				row = BattleshipBoard.getRow();
+				Player.setRowAndColumn();
+				row = Player.getRow();
 				if (row > 10 | row < 1) {
 					validRow = false;
 				}
 			}
 			Boolean validColumn = true;
 			while (!validColumn) {
-				column = BattleshipBoard.getColumn();
+				column = Player.getColumn();
 				if (column > 10 | column < 1) {
 					validColumn = false;
 				}
 			}
 		}
-		hitOrMiss.hit(super.getMyBoard(), super.getYourBoard(), row, column);
+		BoardUpdate.hit(super.getMyBoard(), super.getYourBoard(), row, column);
 
 	}
 	public void repair() {
@@ -99,21 +108,21 @@ public class Human extends Player{
 			if (!guiOn) {
 				Boolean validRow = true;
 				while (!validRow) {
-					BattleshipBoard.setRowAndColumn();
-					row = BattleshipBoard.getRow();
+					Player.setRowAndColumn();
+					row = Player.getRow();
 					if (row > 10 | row < 1) {
 						validRow = false;
 					}
 				}
 				Boolean validColumn = true;
 				while (!validColumn) {
-					column = BattleshipBoard.getColumn();
+					column = Player.getColumn();
 					if (column > 10 | column < 1) {
 						validColumn = false;
 					}
 				}
 			}
-			validTarget = hitOrMiss.repair(super.getMyBoard(), super.getYourBoard(), row, column);
+			validTarget = BoardUpdate.repair(super.getMyBoard(), super.getYourBoard(), row, column);
 		}
 		while (!validTarget);
 	}

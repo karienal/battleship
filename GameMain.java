@@ -19,7 +19,7 @@ public class GameMain {
 		boolean compPlayer = true;
 		System.out.println("Play against computer? (y/n)");
 		String messageResponse = keyboard.nextLine().toUpperCase();
-		if(messageResponse == "Y") {
+		if(messageResponse.equals("Y")) {
 			System.out.println("Set difficulty level: (1,2,or 3)");
 			difficultyLevel = keyboard.nextInt();
 			compPlayer = true;
@@ -62,12 +62,13 @@ public class GameMain {
 	
 	public boolean gameOver(BattleshipBoard aBoard) {
 		boolean gameOver = false;
-		if(Arrays.asList(aBoard).contains(" D ")) {}
-		else if(Arrays.asList(aBoard).contains(" S ")) {}
-		else if(Arrays.asList(aBoard).contains(" C ")) {}
-		else if(Arrays.asList(aBoard).contains(" B ")) {}
-		else if(Arrays.asList(aBoard).contains(" A ")) {}
-		else if(Arrays.asList(aBoard).contains(" R ")) {}
+		BattleshipBoard checkBoard = aBoard;
+		if(Arrays.asList(checkBoard).contains(" D ")) {}
+		else if(Arrays.asList(checkBoard).contains(" S ")) {}
+		else if(Arrays.asList(checkBoard).contains(" C ")) {}
+		else if(Arrays.asList(checkBoard).contains(" B ")) {}
+		else if(Arrays.asList(checkBoard).contains(" A ")) {}
+		else if(Arrays.asList(checkBoard).contains(" R ")) {}
 		else {
 			gameOver = true;
 		}				
