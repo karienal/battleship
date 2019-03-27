@@ -1,9 +1,13 @@
+import java.util.Scanner;
 
 public class BattleshipBoard{
 	String [] [] grid;
+	private static int row = 1;
+	private static int column = 1;
+	private static String axis;
 	static int shipLength;
 	static int shipListElement = 1;
-
+	public static Scanner keyboard = new Scanner(System.in);
 	/*
 	*We make a board.
 	*/
@@ -37,10 +41,7 @@ public class BattleshipBoard{
 		Ship playerShip = new Ship(shipChar);
 		shipLength = playerShip.aShipCharList.size();
 			
-		/*
-		*Start working with the input.
-		*/
-		
+	
 		if (orientation.equals("y")){
 			do{
 				grid[startRow][startColumn]=" "+playerShip.aShipCharList.get(shipListElement-1)+" ";
@@ -139,6 +140,30 @@ public class BattleshipBoard{
 		
 		
 		return placeShipHere;
+	}
+	
+	public static void setRowAndColumn() {
+		System.out.println("What row do you want to place your ship? (1-10)");
+		row = keyboard.nextInt();
+		System.out.println("What column do you want to place your ship? (1-10)");
+		column = keyboard.nextInt();
+	}
+	
+	public static int getRow() {
+		return row;
+	}
+	
+	public static int getColumn() {
+		return column;
+	}
+	
+	public static void setOrientation() {
+		System.out.println("What orientation do you want to place your ship? (x or y)");
+		 axis = keyboard.nextLine().toUpperCase();
+	}
+	
+	public static String getOrientation() {
+		return axis;
 	}
 	
 }
