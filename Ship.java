@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Ship {
 
-	Scanner keyboard = new Scanner(System.in);
 	ArrayList<String> aShipCharList= new ArrayList<String>();
 	public String shipChar;	
 	
@@ -55,34 +54,6 @@ public class Ship {
 			aShipCharList.add("A");
 		}
 		
-		else{
-			/*A sarcastic error message I used in debugging*/
-			System.out.println("nice try");
-
 		
-		}
 	}
-	 
-	 /*
-	 *Another really boring main method. Should make sense though, I hope.
-	 */
-	public static void main(String[] args) {
-		
-		
-		Scanner keyboard = new Scanner(System.in);
-		System.out.println("What the Ship?! ");
-		
-		
-
-		String aShipChar = keyboard.nextLine ();
-		
-		Ship playerShip = new Ship(aShipChar);
-	}
-	
-		
-		
-	
 }
-	
-	
-	

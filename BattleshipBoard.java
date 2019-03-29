@@ -2,12 +2,10 @@ import java.util.Scanner;
 
 public class BattleshipBoard{
 	String [] [] grid;
-	private static int row = 1;
-	private static int column = 1;
-	private static String axis;
+	
 	static int shipLength;
 	static int shipListElement = 1;
-	public static Scanner keyboard = new Scanner(System.in);
+	
 	/*
 	*We make a board.
 	*/
@@ -32,46 +30,6 @@ public class BattleshipBoard{
 		}
 	}
 	
-	/*
-	*And make a ship to be placed. It is to be noted that aShipCharList comes from 
-	*the Ship class
-	*/
-
-	public void placeShip(BattleshipBoard aBoard, String shipChar, String orientation, int startRow, int startColumn){
-		Ship playerShip = new Ship(shipChar);
-		shipLength = playerShip.aShipCharList.size();
-			
-	
-		if (orientation.equals("y")){
-			do{
-				grid[startRow][startColumn]=" "+playerShip.aShipCharList.get(shipListElement-1)+" ";
-				startRow++;
-				shipListElement++;
-				
-				}
-			while(shipListElement<=shipLength);	
-		}
-			
-			
-		/*
-		*The same thing, except here the token exchange moves through the columns instead of the rows. I think something about
-		*what is a row and what is a column is a bit backwards here, but it works so...
-		*/
-		else if(orientation.equals("x")){	
-			do{ 
-				grid[startRow][startColumn] = " " + playerShip.aShipCharList.get(shipListElement - 1) + " ";
-				startColumn++;
-				shipListElement++;
-				
-				}
-			while(shipListElement<=shipLength);
-		}
-		shipListElement=1;
-		playerShip.aShipCharList.clear();			
-
-	}
-	
-	/* boardPrint prints the board. Go figure.*/
 	public void boardPrint(){
 		for (int row = 0; row < 11; row++){
 			for (int column = 0; column < 11; column++){
@@ -84,86 +42,4 @@ public class BattleshipBoard{
 	public String[][] getBoard() {
 		return grid;
 	}
-	
-	
-	/*Tests to see if a ship placement is valid. Checs bounds or if placed on another ship/*/
-	
-	public  boolean validPlaceShip(BattleshipBoard aBoard,int startCol, int startRow, String shipChar , String orientation){
-		boolean placeShipHere=false;
-		int validPlace = 0;
-		int shipSpot;
-		String shipCheck = shipChar.toUpperCase();
-		
-		Ship playerShip = new Ship(shipChar);
-		int shipLength = playerShip.aShipCharList.size()+1;
-		
-		
-		if (orientation.equals("y") == true){
-			
-		for (shipSpot = startRow; shipSpot <= startRow+shipLength; shipSpot++){
-				if (aBoard.getBoard()[shipSpot][startCol]!=" . "){validPlace++;}
-				else{}
-			}
-				
-			if (validPlace > 0){ placeShipHere = false;}		
-			
-			else{placeShipHere = true;}			
-		}
-		
-		
-		if (orientation.equals("x") == true){
-			
-		for ( shipSpot = startCol; shipSpot <= startCol+shipLength; shipSpot++){
-				if (aBoard.getBoard()[startRow][shipSpot]!=" . "){validPlace++;}
-				
-				else{}
-			}
-				
-			if (validPlace > 0){ placeShipHere = false;}		
-			
-			else{placeShipHere = true;}			
-		}
-
-		for (int row=1; row < 11 ; row++){
-			for (int col = 1; col< 11 ; col++){
-				if(aBoard.getBoard()[row][col].equals(" "+shipCheck+" ")){validPlace++;}
-			
-			}
-		}
-		if (validPlace>0){placeShipHere = false;}
-		else{placeShipHere = true;}
-
-		
-		
-		if (startCol+shipLength>=11 || startRow+shipLength>=11){placeShipHere = false;}
-		
-		
-		
-		return placeShipHere;
-	}
-	
-	public static void setRowAndColumn() {
-		System.out.println("What row do you want to place your ship? (1-10)");
-		row = keyboard.nextInt();
-		System.out.println("What column do you want to place your ship? (1-10)");
-		column = keyboard.nextInt();
-	}
-	
-	public static int getRow() {
-		return row;
-	}
-	
-	public static int getColumn() {
-		return column;
-	}
-	
-	public static void setOrientation() {
-		System.out.println("What orientation do you want to place your ship? (x or y)");
-		 axis = keyboard.nextLine().toUpperCase();
-	}
-	
-	public static String getOrientation() {
-		return axis;
-	}
-	
 }
