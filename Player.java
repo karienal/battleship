@@ -64,11 +64,12 @@ public abstract class Player{
 		shipListElement=0;
 		playerShip.aShipCharList.clear();			
 
+
 	}
 	
 
 	public abstract void setUp(BattleshipBoard aPlayerBoard);
 	
-	public abstract void playerTurn(BattleshipBoard aPlayerBoard, BattleshipBoard aPlayerDisplayBoard, BattleshipBoard anEnemyBoard);
+	public abstract void playerTurn(BattleshipBoard aPlayerBoard, BattleshipBoard aPlayerDisplayBoard, BattleshipBoard anEnemyBoard,BattleshipBoard anEnemyDisplayBoard);
 	
 }

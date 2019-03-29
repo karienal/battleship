@@ -83,10 +83,10 @@ public class GameMain{
 		
 		do{
 			System.out.println("Player 1 turn");
-			player1.playerTurn(board1,displayBoard1,board2);
+			player1.playerTurn(board1,displayBoard1,board2,displayBoard2);
 			if (!gameOver2(board2)){
 				System.out.println("Player 2 turn");
-				player2.playerTurn(board2,displayBoard2,board1);
+				player2.playerTurn(board2,displayBoard2,board1,displayBoard1);
 				
 				if(gameOver2(board1)){
 					gameContinue = false;

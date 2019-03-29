@@ -74,7 +74,7 @@ public class Human extends Player {
 	}
 
 	
-	public void playerTurn(BattleshipBoard aPlayerBoard, BattleshipBoard aPlayerDisplayBoard, BattleshipBoard anEnemyBoard){
+	public void playerTurn(BattleshipBoard aPlayerBoard, BattleshipBoard aPlayerDisplayBoard, BattleshipBoard anEnemyBoard, BattleshipBoard anEnemyDisplayBoard){
 		
 			System.out.println("Action (Attack/repair):");
 			String action = keyboard.nextLine();
@@ -91,7 +91,7 @@ public class Human extends Player {
 				
 			}
 			else{
-				repair(anEnemyBoard,aPlayerDisplayBoard,row,column);
+				repair(aPlayerBoard,anEnemyDisplayBoard,row,column);
 			}
 			System.out.println("Your enemy's board");
 			aPlayerDisplayBoard.boardPrint();
