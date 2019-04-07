@@ -25,8 +25,13 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+/**
+ * Our GameGui class creates 2 scenes to display to the user for the Battleship Board Game. It also includes getter
+ * methods for color, orientation, and ship length.
+ * @author Team 21
+ *
+ */
     
-
     public class GameGui extends Application {   
     	public Button tf;
     	public static Button[][] gridButtons = new Button[11][11];
@@ -44,7 +49,11 @@ import javafx.event.EventHandler;
     	MenuItem x = new MenuItem("Along the row");
     	MenuItem y = new MenuItem("Along the column");
 		
-		/*Player player1 = new Human();*/
+	   	
+    	/**
+    	 * This method creates the first introductory screen displayed to the user, the second scene that 
+    	 * displays the board to the user to allow for game set-up and game play
+    	 */
 
         @Override
         public void start(Stage primaryStage) {
@@ -121,20 +130,11 @@ import javafx.event.EventHandler;
     				else if(x == 0) {
     					tf.setText(" " + Integer.toString(y) + " ");
     					
-    					/*if(y == 10) {
-    						tf.setText(Integer.toString(y) + " ");
-    						
-    					}
-    					else {
-    						tf.setText(" " + Integer.toString(y) + " ");
-    					}*/
-    				}
+    					    				}
     					    					
     				else {
     					tf.setText("   ");
-//    					gridButtons[y][x] = tf;
-
-    					HandleButtonClick handle = new HandleButtonClick(tf);
+ 						HandleButtonClick handle = new HandleButtonClick(tf);
     					tf.setOnAction(handle);
    
     				}
@@ -241,53 +241,35 @@ import javafx.event.EventHandler;
             
         }
 		
-		
-		
-		
-		
-        
-        /*public void placeShip(BattleshipBoard aBoard, String shipChar, String orientation, int startRow, int startColumn) {
-        	Ship playerShip = new Ship(shipChar);
-        	shipLength = playerShip.aShipCharList.size();
-        	aPlayer.placeShip(aBoard, shipChar, orientation, startRow, startColumn);
-        }*/
+	       
+        /**
+         * This method returns the colour that the button will be changed to in HandleButtonClick when one
+         * of the grid buttons is clicked.
+         * @return color
+         */
         
         public static String getColor() {
         	return color;
         }
         
+        /**
+         * This method returns the orientation that is selected by the user during game set-up.
+         * @return orientation
+         */
         public static String getOrientation() {
         	return orientation;
         }
         
+        
+        /**
+         * This method returns the length of the ship being placed so the correct number of buttons change
+         * colour during set-up.
+         * @return lengthShip
+         */
         public static int getLength() {
         	return lengthShip;
         }
-        
-//        public  boolean validPlaceShip(BattleshipBoard aBoard,int startCol, int startRow, String shipChar , String orientation){
-//        	boolean valid = false;
-//        	return valid;
-//        }
-        
-        public static void setUp(BattleshipBoard playerBoard) {
-			
-			
-        	
-        }
-        
-        public static void attack(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard) {
-        	
-        }
-        
-//        public static Boolean hitOrMiss(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
-//        	boolean hitToken = false;
-//        	return hitToken;
-//        }
-        
-        public static void repair(BattleshipBoard playersBoard,BattleshipBoard displayBoard) {
-        	
-        }
-
+              
         public static void main(String[] args) {    
             launch(args);
         }    
