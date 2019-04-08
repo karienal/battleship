@@ -1,11 +1,16 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+
+/**
+ * Our GameMain class 
+ * @author Team 21
+ *
+ */
 public class GameMain{
 	
 	public static Scanner keyboard = new Scanner(System.in);
 	private int difficultyLevel;
-	/*private boolean player1Turn = true;*/
 	private static BattleshipBoard board1 = new BattleshipBoard();
 	private static BattleshipBoard displayBoard1 = new BattleshipBoard();
 	private	static BattleshipBoard board2 = new BattleshipBoard();
@@ -15,6 +20,10 @@ public class GameMain{
 	private static Player player2;
 	
 	
+	/**
+	 * Our GameMain method completes the initial set-up of the game, including if player 2 will be
+	 * the AI or another user, and will set the required boards for each player as a human or AI board. 
+	 */
 	public GameMain() {
 		
 		
@@ -39,27 +48,20 @@ public class GameMain{
 	}
 		
 		
-	public static boolean gameOver(BattleshipBoard aBoard) {
-		boolean gameOver = false;
-		BattleshipBoard checkBoard = aBoard;
-		if(Arrays.asList(checkBoard).contains(" D ")) {}
-		else if(Arrays.asList(checkBoard).contains(" S ")) {}
-		else if(Arrays.asList(checkBoard).contains(" C ")) {}
-		else if(Arrays.asList(checkBoard).contains(" B ")) {}
-		else if(Arrays.asList(checkBoard).contains(" A ")) {}
-		else if(Arrays.asList(checkBoard).contains(" R ")) {}
-		else {
-			gameOver = true;
-		}				
-		return gameOver;
-	}
+	/**
+	 * This method determines if there are any remaining ships on the board that is given as a parameter.
+	 * If at least one tile contains a ship, the method will return gameOver is false.
+	 * @param aBoard
+	 * @return gameOver
+	 */
 	
 	public static boolean gameOver2(BattleshipBoard aBoard){
 		boolean gameOver = true;
 		int didWin =0 ;
 		for(int row = 1 ; row < 11 ; row++) {
 			for(int column = 1 ; column < 11 ; column++) {
-				if(aBoard.getBoard()[row][column]!= " . "&& aBoard.getBoard()[row][column]!= " X " && aBoard.getBoard()[row][column]!= " O " && aBoard.getBoard()[row][column]!= " x ") {
+				if(aBoard.getBoard()[row][column]!= " . "&& aBoard.getBoard()[row][column]!= " X "
+						&& aBoard.getBoard()[row][column]!= " O " && aBoard.getBoard()[row][column]!= " x ") {
 					didWin++;
 				}
 				else {}
@@ -71,6 +73,10 @@ public class GameMain{
 		
 	}
 
+	/**
+	 * This is the method that runs the player set-up, and then the player's turns until gameOver is true.
+	 * @param args
+	 */
 		
 	public static void main(String[] args) {
 		GameMain game = new GameMain();
@@ -91,20 +97,15 @@ public class GameMain{
 				if(gameOver2(board1)){
 					gameContinue = false;
 				}
-			
-							
+									
 			}
 			else{gameContinue = false;}
-		
-			
+				
 		}
 		while(gameContinue = true);
 		
 		System.out.println("Game Over!");
-		
-		
-		
-		
+			
 	}
 
 	
