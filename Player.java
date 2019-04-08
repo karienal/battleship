@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The Player class is an abstract class that contains the methods for game play that are required
+ * for both human-user input and AI generated input.
+ * @author Team21
+ *
+ */
 public abstract class Player{
 	
 	public static Scanner keyboard = new Scanner(System.in);
@@ -11,8 +17,11 @@ public abstract class Player{
 	public static ArrayList<String> shipList = new ArrayList<String>();
 	public static ArrayList<String> shipNameList = new ArrayList<String>();
 	
-	
-	
+	/**
+	 * This method adds the ships to the player board and display board.
+	 * @param aPlayerBoard
+	 * @param aPlayerDisplayBoard
+	 */	
 	
 	Player (BattleshipBoard aPlayerBoard,BattleshipBoard aPlayerDisplayBoard){
 		
@@ -32,6 +41,15 @@ public abstract class Player{
 		this.playerDisplayBoard = aPlayerDisplayBoard;
 	}
 	
+	/**
+	 * This method verifies the player's selection for placing the ship on the board is valid, and then saves a
+	 * shipChar in the selected tile on the board.
+	 * @param aBoard
+	 * @param shipChar
+	 * @param orientation
+	 * @param startRow
+	 * @param startColumn
+	 */
 	public void placeShip(BattleshipBoard aBoard, String shipChar, String orientation, int startRow, int startColumn){
 
 		Ship playerShip = new Ship(shipChar);
@@ -66,10 +84,21 @@ public abstract class Player{
 
 
 	}
-	
-
+	/**
+	 * This is an abstract method for setting up a board, which is overridden by either the Human or AI class
+	 * depending on the type of user that is playing.
+	 * @param aPlayerBoard
+	 */
 	public abstract void setUp(BattleshipBoard aPlayerBoard);
 	
+	/**
+	 * This is an abstract method for running a player's turn, which is overriden by either the Human or AI class
+	 * depending on the type of user that is playing.
+	 * @param aPlayerBoard
+	 * @param aPlayerDisplayBoard
+	 * @param anEnemyBoard
+	 * @param anEnemyDisplayBoard
+	 */
 	public abstract void playerTurn(BattleshipBoard aPlayerBoard, BattleshipBoard aPlayerDisplayBoard, BattleshipBoard anEnemyBoard,BattleshipBoard anEnemyDisplayBoard);
 	
 }

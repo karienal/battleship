@@ -1,5 +1,20 @@
+/**
+ * This class verifies that the tile that is selected by the user is a valid place to set up their ship on their board.
+ * @author Team21
+ *
+ */
+
 public class ShipCheckPlace {
-	
+	/**
+	 * This method calls the validShipCol, validShipRow, and overlapCheck methods in the ShipCheckPlace class to ensure that all
+	 * three allow the ship's valid placement. 
+	 * @param aBoard
+	 * @param shipChar
+	 * @param orientation
+	 * @param startRow
+	 * @param startCol
+	 * @return
+	 */
 	public boolean shipCheckPlace(BattleshipBoard aBoard, String shipChar, String orientation, int startRow,int startCol){
 		boolean validShip=true;
 		if(orientation.toUpperCase().equals("Y")) {
@@ -20,7 +35,16 @@ public class ShipCheckPlace {
 		}
 		return validShip;
 	}
-	
+	/**
+	 * This method verifies that the column selected by the user is an appropriate column to place this ship (along the x axis).
+	 * It returns true if the user has selected an appropriate column.
+	 * @param aBoard
+	 * @param shipChar
+	 * @param orientation
+	 * @param startRow
+	 * @param startCol
+	 * @return
+	 */
 	public  boolean validShipCol(BattleshipBoard aBoard, String shipChar, String orientation, int startRow,int startCol) {
 		boolean placShip = false;
 		String shipCheck = shipChar;
@@ -46,8 +70,16 @@ public class ShipCheckPlace {
 		return placShip;
 		
 	}
-	/*
-	 * this checks for bounds for the bounds on the y axis
+
+	/**
+	 * This method verifies that the row selected by the user is an appropriate row to place the ship (along the y axis).
+	 * It returns true if the user has selected an appropriate row.
+	 * @param aBoard
+	 * @param shipChar
+	 * @param orientation
+	 * @param startRow
+	 * @param startCol
+	 * @return placeShip
 	 */
 	public  boolean validShipRow(BattleshipBoard aBoard, String shipChar, String orientation, int startRow, int startCol) {
 		boolean placeShip = false;
@@ -73,6 +105,17 @@ public class ShipCheckPlace {
 		}
 		return placeShip;
 	}
+	
+	/**
+	 * This method ensures that the user has not selected a place for the ship that would require the ships overlap
+	 * on the board. It returns false if the ships would overlap with the user's selection.
+	 * @param aBoard
+	 * @param shipChar
+	 * @param orientation
+	 * @param startRow
+	 * @param startCol
+	 * @return overlapCheck
+	 */
 	public boolean overlapCheck(BattleshipBoard aBoard , String shipChar, String orientation,int startRow, int startCol) {
 		boolean overlapCheck = false;
 		int shipSpot;
