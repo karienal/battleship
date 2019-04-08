@@ -1,5 +1,12 @@
 import java.util.Scanner;
 
+/**
+ * The Human class extends the Player class, and contains the methods for game play that will require
+ * human-user input.
+ * @author Team21
+ *
+ */
+
 public class Human extends Player {
 	
 	public static Scanner keyboard = new Scanner(System.in);
@@ -7,10 +14,13 @@ public class Human extends Player {
 	public BattleshipBoard playerBoard;
 	public BattleshipBoard playerDisplayBoard;
 	
-	
-	
-	
-	
+	/**
+	 * This method takes 2 boards to set-up a human-user in the game. The first board will be 
+	 * the human-user's own board on which they will place their own ships. The second board will display the human-user's
+	 * moves on the enemy board.		
+	 * @param aPlayerBoard
+	 * @param aPlayerDisplayBoard
+	 */
 	
 	public Human (BattleshipBoard aPlayerBoard, BattleshipBoard aPlayerDisplayBoard){
 		
@@ -29,6 +39,10 @@ public class Human extends Player {
 		shipList.add("A");
 	}
 	
+	/**
+	 * This method sets up the human-user's ships on their board, and verifies that the 
+	 * human-user's selection for ship placement is valid.
+	 */
 	public void setUp(BattleshipBoard aPlayerBoard){
 		
 		ShipCheckPlace checker = new ShipCheckPlace();
@@ -58,23 +72,26 @@ public class Human extends Player {
 				}
 			}
 			while (!validPlace);
-			
-			
-			
-			
-			
+							
 			
 			aPlayerBoard.boardPrint();
 			
-			
-			
+						
 		}
 		
 		
 	}
 
-	
-	public void playerTurn(BattleshipBoard aPlayerBoard, BattleshipBoard aPlayerDisplayBoard, BattleshipBoard anEnemyBoard, BattleshipBoard anEnemyDisplayBoard){
+	/**
+	 * This method play's the human-user's turn, and prompts them to attack or repair. An attack will display on the 
+	 * enemy board, and the human-user's display board.
+	 * @param aPlayerBoard
+	 * @param aPlayerDisplayBoard
+	 * @param anEnemyBoard
+	 * @param anEnemyDisplayBoard
+	 */
+	public void playerTurn(BattleshipBoard aPlayerBoard, BattleshipBoard aPlayerDisplayBoard, 
+			BattleshipBoard anEnemyBoard, BattleshipBoard anEnemyDisplayBoard){
 		
 			System.out.println("Action (Attack/repair):");
 			String action = keyboard.nextLine();
@@ -101,10 +118,15 @@ public class Human extends Player {
 		
 		
 	}
-	
-	
-
-
+		
+/**
+ * This method determines if the user's attack was a hit or miss, and returns true if attack was a hit.
+ * @param enemyBoard
+ * @param displayEnemyBoard
+ * @param row
+ * @param column
+ * @return hit
+ */
 	public static boolean attack(BattleshipBoard enemyBoard, BattleshipBoard displayEnemyBoard, int row, int column) {
 		boolean hit = false;
 		
@@ -150,27 +172,35 @@ public class Human extends Player {
 
 		
 	}
-	
+	/**
+	 * This method determines if the user's selection to repair the ship is valid, and if so it will repair the
+	 * ship tile by changing the token from an x to an R.
+	 * @param playersBoard
+	 * @param displayBoard
+	 * @param row
+	 * @param column
+	 */
 	public static void repair(BattleshipBoard playersBoard,BattleshipBoard displayBoard, int row, int column) {
 		if(playersBoard.getBoard()[row][column]== " . " || playersBoard.getBoard()[row][column]== " O "){
 			
-			System.out.println("You cant repair water though...");			
+			System.out.println("Invalid selection, must select a ship tile.");			
 			}
 		
 		else if(playersBoard.getBoard()[row][column]!= " x " && playersBoard.getBoard()[row][column]!= " X "){
 			
-			System.out.println("Chill, your ship is fine.");
+			System.out.println("Invalid selection, no damage to repair.");
 			
 			
 		}
 		else if (playersBoard.getBoard()[row][column] == " x "){
 			playersBoard.getBoard()[row][column]= " R " ;
 			displayBoard.getBoard()[row][column]= " . " ;
+			System.out.println("Ship has been repaired");
 				
 			}
 		
 		
-		else{System.out.println("She broke.");}
+		else{System.out.println("Ship is unrepairable. Sorry!");}
 		
 		}
 
