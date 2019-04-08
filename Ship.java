@@ -3,15 +3,22 @@ import java.util.List;
 import java.io.*;
 import java.util.Scanner;
 
-
+/**
+ * The ship class creates an ArrayList of ships that is used by the Player class to place
+ * the ships on the board.
+ * @author Team21
+ *
+ */
 public class Ship {
 
 	ArrayList<String> aShipCharList= new ArrayList<String>();
 	public String shipChar;	
 	
-	/*The method used to generate ships to be placed on the board.
-	@param shipChar A string containing a single character,  used  generate ships of appropriate size and character
-	*/
+	/**
+	 * The method used to generate ships to be placed on the board.
+	 * @param shipChar A string containing a single character,  used  generate ships of appropriate size and character
+	 */
+	
 	Ship(String shipChar){
 		
 		
