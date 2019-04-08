@@ -5,6 +5,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 
+/**
+ * This class handles the user's interaction with the graphic interface using mouse button clicks
+ * @author Team21
+ *
+ */
+
 public class HandleButtonClick implements EventHandler<ActionEvent>{
 	private Button tf;
 	private int row;
@@ -23,10 +29,18 @@ public class HandleButtonClick implements EventHandler<ActionEvent>{
 	MenuItem menuB = new MenuItem("Battleship");
 	MenuItem menuA = new MenuItem("Aircraft Carrier");
 	
+	
+	/**
+	 * This method sets the clicked button handle.
+	 * @param button
+	 */
 	public HandleButtonClick(Button button) {
 		tf = button;
 	}
 	
+	/**
+	 * This method sets the action events for the grid buttons in the game board.
+	 */
 	public void handle(ActionEvent event) {
 		System.out.println("Row: " + GridPane.getRowIndex(tf));
 		System.out.println("Column: " + GridPane.getColumnIndex(tf));
