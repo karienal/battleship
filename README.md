@@ -7,7 +7,8 @@ Welcome to our little Battleship clone! It has our own little additions compared
   1. Ensure that the [Java Platform](https://www.oracle.com/technetwork/java/javase/downloads/index.html) is downloaded and installed.
   2. Click the Clone or Download button and choose to download as a zip file.
   3. Open the folder in your Terminal/Command Prompt and run ```javac *.java```.
-  4. Run the file with ```java GameMain```.
+  4. Run the console version with ```java GameMain```.
+  5. Run the GUI version with ```java GameGUI```.
 
 ## Rules of the Game:
 1. Each player will place their five ships on the board.
